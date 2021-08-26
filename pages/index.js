@@ -1,5 +1,7 @@
-import Page from '../components/page'
+const Home = () => {
+    return (
+        <h1>Home</h1>
+    );
+};
 
-export default function Index() {
-  return <Page />
-}
+export default Home;

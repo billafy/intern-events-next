@@ -1,0 +1,71 @@
+@import "./templates/_colors.scss";
+
+.footer {
+    width: 100%;
+    background: $border;
+    .signature {
+        font-size: 1rem;
+        background: $background;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        color: $text;
+    }
+    /* .rows {
+        display: flex;
+        flex-wrap: wrap;
+        padding-top: 1em;
+    }
+    .cols {
+        padding: 0rem 3rem;
+    }
+    .cols h4 {
+        font-size: 18px;
+        text-decoration: capitalize;
+        color: #000;
+    }
+    .cols ul {
+        padding-top: 1em;
+    }
+    .cols ul li {
+        margin-bottom: 1em;
+    }
+    .cols ul li a {
+        text-decoration: none;
+        color: $text;
+        font-weight: 300;
+    }
+    .cols ul li a:hover {
+        font-weight: 500;
+        color: #fff;
+        transition: all 0.3s ease 0s;
+    }
+    .social {
+        padding-top: 1em;
+        display: flex;
+        justify-content: center;
+    }
+    .social a {
+        padding: 0.5em;
+        color: #fff;
+        font-size: 20px;
+        display: inline-block;
+        text-align: center;
+    }
+    .fb:hover {
+        color: #0353a4;
+        transition: all 0.3s ease 0s;
+    }
+    .tweet:hover {
+        color: #00b4d8;
+        transition: all 0.3s ease 0s;
+    }
+    .insta:hover {
+        color: #e1306c;
+        transition: all 0.3s ease 0s;
+    }
+    .linkdn:hover {
+        color: #006192;
+        transition: all 0.3s ease 0s;
+    } */
+}

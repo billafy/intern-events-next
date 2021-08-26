@@ -1,0 +1,54 @@
+@import "./templates/_colors.scss";
+
+* {
+    box-sizing: border-box;
+    font-family: "Georama", "Segoe UI", "sans-serif";
+}
+html,
+body {
+    margin: 0;
+    padding: 0px;
+    background: $background;
+    font-size: 16px;
+    button,
+    input,
+    select,
+    a {
+        outline: none;
+    }
+    input[type="button"],
+    input[type="submit"],
+    a {
+        cursor: pointer;
+    }
+    ul {
+        list-style: none;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
+    .main-container {
+        min-height: calc(100vh - 150px);
+        max-height: auto;
+    }
+}
+@media (min-width: 768px) and (max-width: 1202px) {
+    html {
+        font-size: 14px;
+    }
+}
+@media (min-width: 297px) and (max-width: 767px) {
+    html {
+        font-size: 13px;
+    }
+}
+@media (min-width: 0px) and (max-width: 296px) {
+    html {
+        font-size: 10px;
+    }
+}
