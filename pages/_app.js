@@ -17,7 +17,7 @@ import "../styles/globals.scss";
 const Main = ({ Component, pageProps }) => {
     const router = useRouter();
     const dispatch = useDispatch();
-    const { inputError, isLoggedIn, loading, accountInput } = useSelector(
+    const { loading } = useSelector(
         (state) => state.auth
     );
 
@@ -29,40 +29,8 @@ const Main = ({ Component, pageProps }) => {
         }
     };
 
-    const checkAccountDetails = () => {
-        const {
-            signupEmail,
-            signupPassword,
-            signupConfirmPassword,
-            contactNumber,
-        } = accountInput;
-        if (
-            !signupEmail ||
-            !signupPassword ||
-            !signupConfirmPassword ||
-            !contactNumber
-        )
-            router.replace("/auth/signup");
-    };
-
-    useEffect(() => {
-        dispatch({
-            type: "UPDATE_INPUT",
-            payload: { accountInput: defaultInputs },
-        });
-    }, [isLoggedIn]);
-
-    useEffect(() => {
-        if (!inputError) return;
-        setTimeout(() => {
-            dispatch({ type: "INPUT_ERROR", payload: { inputError: "" } });
-        }, 3000);
-    }, [inputError]);
-
     useEffect(() => {
         refresh();
-        if (!isLoggedIn && router.pathname === "/auth/info")
-            checkAccountDetails();
         setTimeout(() => {
             dispatch({ type: "STOP_LOAD" });
         }, 3000);

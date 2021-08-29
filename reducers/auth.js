@@ -23,7 +23,6 @@ const authReducer = (state = initialState, action) => {
 		case "LOGIN":
 			return {
 				...state,
-				loading: false,
 				isLoggedIn: true,
 				account: action.payload.account,
 			};

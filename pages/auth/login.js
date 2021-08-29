@@ -29,6 +29,7 @@ const Login = () => {
         });
         if (res.success) {
             dispatch({ type: "LOGIN", payload: { account: res.body.account } });
+            dispatch({ type: "STOP_LOAD" });
             router.replace("/");
         } else
             dispatch({

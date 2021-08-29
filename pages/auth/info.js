@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 
@@ -21,7 +21,7 @@ const accountTypes = {
 const Info = () => {
     const router = useRouter();
     const dispatch = useDispatch();
-    const { accountInput } = useSelector((state) => state.auth);
+    const { accountInput, isLoggedIn } = useSelector((state) => state.auth);
     const [accountType, setAccountType] = useState("Student");
 
     const createAccount = async (url, body) => {
@@ -132,6 +132,27 @@ const Info = () => {
             address: companyAddress,
         });
     };
+
+    const checkAccountDetails = () => {
+        const {
+            signupEmail,
+            signupPassword,
+            signupConfirmPassword,
+            contactNumber,
+        } = accountInput;
+        if (
+            !signupEmail ||
+            !signupPassword ||
+            !signupConfirmPassword ||
+            !contactNumber
+        )
+            router.replace("/auth/signup");
+    };
+
+    useEffect(() => {
+        if (!isLoggedIn && router.pathname === "/auth/info")
+            checkAccountDetails();
+    }, []);
 
     return (
         <Form

@@ -1,6 +1,28 @@
+export const reqGet = async (url) => {
+	const response = await fetch(url, {
+		method: "GET",
+		credentials: "include",
+	});
+	const data = await response.json();
+	return data;
+};
+
 export const reqPost = async (url, body = {}) => {
 	const response = await fetch(url, {
 		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(body),
+		credentials: "include",
+	});
+	const data = await response.json();
+	return data;
+};
+
+export const reqPut = async (url, body = {}) => {
+	const response = await fetch(url, {
+		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
 		},

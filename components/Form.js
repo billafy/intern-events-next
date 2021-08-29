@@ -1,13 +1,18 @@
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import Link from "next/link";
 import Head from "next/head";
 
+import { defaultInputs } from "../utils/inputFields";
+
 import _ from "../styles/Form.module.scss";
 
 const Form = ({ title, inputFields, submitButton, link, dropDown }) => {
 	const dispatch = useDispatch();
-	const { accountInput, inputError } = useSelector((state) => state.auth);
+	const { accountInput, inputError, isLoggedIn } = useSelector(
+		(state) => state.auth
+	);
 
 	const updateInput = (name, value) => {
 		const newAccountInput = accountInput;
@@ -17,6 +22,20 @@ const Form = ({ title, inputFields, submitButton, link, dropDown }) => {
 			payload: { accountInput: newAccountInput },
 		});
 	};
+
+	useEffect(() => {
+		dispatch({
+			type: "UPDATE_INPUT",
+			payload: { accountInput: defaultInputs },
+		});
+	}, [isLoggedIn]);
+
+	useEffect(() => {
+		if (!inputError) return;
+		setTimeout(() => {
+			dispatch({ type: "INPUT_ERROR", payload: { inputError: "" } });
+		}, 3000);
+	}, [inputError]);
 
 	return (
 		<div className={_.formContainer}>
