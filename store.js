@@ -8,7 +8,7 @@ import { defaultInputs } from "./utils/inputFields";
 
 let store;
 
-const initialState = {
+export const initialState = {
     auth: {
         accountInput: defaultInputs,
         inputError: "",
