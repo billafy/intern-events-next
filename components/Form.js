@@ -51,6 +51,7 @@ const Form = ({ title, inputFields, submitButton, link, dropDown }) => {
 							onChange={({ target: { value } }) =>
 								dropDown.setValue(value)
 							}
+							data-testid='form-dropdown'
 						>
 							{dropDown.options.map((option) => (
 								<option key={option}>{option}</option>
@@ -97,7 +98,7 @@ const Form = ({ title, inputFields, submitButton, link, dropDown }) => {
 							</div>
 						);
 					})}
-				{inputError && <p className={_.inputError}>{inputError}</p>}
+				{inputError && <p className={_.inputError} data-testid='input-error'>{inputError}</p>}
 				{submitButton && (
 					<div className={_.submit}>
 						<input
