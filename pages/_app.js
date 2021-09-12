@@ -53,6 +53,7 @@ const Main = ({ Component, pageProps }) => {
                     href="https://fonts.googleapis.com/css2?family=Georama:wght@300&display=swap"
                     rel="stylesheet"
                 />
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"/>
                 <meta name="" content="" />
                 <title>InternEvents</title>
             </Head>

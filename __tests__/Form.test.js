@@ -1,16 +1,16 @@
 import { render, screen } from "@testing-library/react";
-
-import Form from "../components/Form";
-
-import { useStore, initialState } from "../store";
-
-import { Provider } from "react-redux";
-
+import userEvent from "@testing-library/user-event";
 import { useState } from "react";
+import { Provider } from "react-redux";
+import { useStore, initialState } from "../store";
+import Form from "../components/Form";
+import { delay } from "../utils/utils";
 
-import userEvent from '@testing-library/user-event'
-
-const TestForm = ({ inputFields, defaultStore = initialState, handler = () => {} }) => {
+const TestForm = ({
+	inputFields,
+	defaultStore = initialState,
+	handler = () => {},
+}) => {
 	const store = useStore(defaultStore);
 	const [value, setValue] = useState("item1");
 
@@ -102,25 +102,43 @@ describe("Form tests", () => {
 			const href = link[link.length - 1];
 			expect(href).toBe("link");
 		});
+
+		it("should clear the input error after 3 seconds", async () => {
+			render(
+				<TestForm
+					defaultStore={{
+						...initialState,
+						auth: { ...initialState.auth, inputError: "Invalid" },
+					}}
+				/>
+			);
+			await delay(3000);
+			const inputError = screen.queryByTestId("input-error");
+			expect(inputError).not.toBeInTheDocument();
+		});
 	});
 
 	describe("User events", () => {
-		it('should update input fields', () => {
-			render(<TestForm inputFields={[{title: 'Test', type: 'text'}]}/>)
-			const inputField = screen.getByRole('textbox', {placeholder: 'Test'})
-			userEvent.type(inputField, 'oye')
-			expect(inputField.value).toBe('oye')
-		})
+		it("should update input fields", () => {
+			render(
+				<TestForm inputFields={[{ title: "Test", type: "text" }]} />
+			);
+			const inputField = screen.getByRole("textbox", {
+				placeholder: "Test",
+			});
+			userEvent.type(inputField, "oye");
+			expect(inputField.value).toBe("oye");
+		});
 
-		it('should call the handler when clicked the submit button', () => {
+		it("should call the handler when clicked the submit button", () => {
 			let called = false;
 			const handler = () => {
 				called = true;
-			}
-			render(<TestForm handler={handler}/>)
-			const submit = screen.getByRole('button', {name: 'Submit'})
-			userEvent.click(submit)
-			expect(called).toBeTruthy()
-		})
+			};
+			render(<TestForm handler={handler} />);
+			const submit = screen.getByRole("button", { name: "Submit" });
+			userEvent.click(submit);
+			expect(called).toBeTruthy();
+		});
 	});
 });

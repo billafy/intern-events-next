@@ -1,0 +1,128 @@
+@import './templates/_colors.scss';
+@import url("https://fonts.googleapis.com/css2?family=Georama:wght@100;200;300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@100;300;400;500&display=swap");
+
+.landingPage {
+    padding: 0px 1rem;
+    overflow-x: hidden;
+    .hero {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        max-height: auto;
+        .heroContent {
+            flex: 0.7;
+            padding: 2rem;
+            color: $text;
+            h1 {
+                font-family: "Alegreya Sans SC", sans-serif;
+                font-size: 3rem;
+                margin-bottom: 0.3rem;
+            }
+            p {
+                font-size: 1.1rem;
+                line-height: 1.5em;
+                text-align: justify;
+                margin-bottom: 2rem;
+            }
+            a {
+                background: $button;
+                border-radius: 1.25rem;
+                padding: 0.8rem;
+                text-decoration: none;
+                color: $text;
+                &:hover {
+                    background: $linkHover;
+                    transition: all 0.3s ease;
+                }
+            }
+        }
+        .heroImage {
+            display: flex;
+            flex: 1;
+            align-items: center;
+            justify-content: center;
+            img {
+                width: 100%;
+                object-fit: contain;
+            }
+        }
+    }
+    .features {
+        color: $text;
+        h1 {
+            font-family: "Alegreya Sans SC", sans-serif;
+            font-size: 2rem;
+            text-align: center;
+        }
+        hr {
+            width: 50%;
+        }
+        .feature {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 5rem;
+            &:nth-child(even) {
+                flex-direction: row-reverse;
+                .featureImage {
+                    justify-self: flex-end;
+                }
+            }
+            .featureImage {
+                flex: 1;
+                width: 50%;
+                object-fit: contain;
+            }
+            .featureContent {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                padding: 1rem;
+                width: 50%;
+                h2 {
+                    font-family: "Alegreya Sans SC", sans-serif;
+                    font-size: 2rem;
+                }
+                p {
+                    width: 75%;
+                    line-height: 1.5em;
+                    text-align: justify;
+                    font-size: 1.1rem;
+                }
+            }
+        }
+    }
+    @media (min-width: 0px) and (max-width: 868px) {
+        padding: 0.5rem;
+        .hero {
+            flex-direction: column;
+            .heroContent {
+                flex: 0.5;
+            }
+            .heroImage {
+                flex: 1.3;
+            }
+        }
+        .features {
+            .feature {
+                flex-direction: column;
+                &:nth-child(even) {
+                    flex-direction: column;
+                }
+            }
+            .featureImage {
+                width: 100% !important;
+            }
+            .featureContent {
+                width: 100% !important;
+                padding-bottom: 2em;
+                p {
+                    width: 100% !important;
+                }
+            }
+        }
+    }
+}

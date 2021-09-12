@@ -76,7 +76,7 @@ const Form = ({ title, inputFields, submitButton, link, dropDown }) => {
 											updateInput(field.name, value)
 										}
 										id={field.name}
-										data-testid="form-input-dropdown"
+										data-testid={`${field.name}-field`}
 									>
 										{field.options.map((option) => (
 											<option key={option} value={option}>
@@ -94,6 +94,7 @@ const Form = ({ title, inputFields, submitButton, link, dropDown }) => {
 											updateInput(field.name, value)
 										}
 										id={field.name}
+										data-testid={`${field.name}-field`}
 									/>
 								)}
 							</div>
