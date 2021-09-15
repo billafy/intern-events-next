@@ -1,41 +1,50 @@
 import _ from "../styles/Footer.module.scss";
 
+import { socialLinks, footerLinks } from "../utils/staticData";
+
 const Footer = () => {
     return (
         <footer className={_.footer}>
-            {/* <div className={_.container}> */}
-            {/*     <div className={_.rows}> */}
-            {/*         <div className={_.cols}> */}
-            {/*             <h4> Company </h4> */}
-            {/*             <ul> */}
-            {/*                 <li><a href=""> About Us </a></li> */}
-            {/*                 <li><a href=""> Other Services </a></li> */}
-            {/*                 <li><a href=""> Our Internship Programs </a></li> */}
-            {/*             </ul> */}
-            {/*         </div> */}
-            {/*         <div className={_.cols}> */}
-            {/*             <h4> Get Help</h4> */}
-            {/*             <ul> */}
-            {/*                 <li><a href=""> FAQ </a></li> */}
-            {/*                 <li><a href=""> Privacy Policy </a></li> */}
-            {/*                 <li><a href=""> Terms And Conditions</a></li>   */}
-            {/*             </ul> */}
-            {/*         </div> */}
-            {/*         <div className={_.cols}> */}
-            {/*             <h4> Join Us </h4> */}
-            {/*             <div className="social"> */}
-            {/*                 <a className={_.fb} href=""></a> */}
-            {/*                 <a className={_.tweet} href=""></a> */}
-            {/*                 <a className={_.insta} href=""></a> */}
-            {/*                 <a className={_.linkdn} href=""></a> */}
-            {/*             </div> */}
-            {/*         </div> */}
-            {/*     </div> */}
-            {/* </div> */}
-            <form className={_.feedback}>
-                <input type="text" placeholder="Leave a message for us" />
-                <input type="button" value="Send" />
-            </form>
+            <div className={_.footerInfo}>
+                {footerLinks.map((footerLink) => {
+                    return (
+                        <div key={footerLink.id} className={_.footerColumn}>
+                            <h4>{footerLink.heading}</h4>
+                            <ul>
+                                {footerLink.links.map((link) => {
+                                    return (
+                                        <li key={link.id}>
+                                            <a href={link.href}>{link.text}</a>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </div>
+                    );
+                })}
+                <div className={`${_.footerColumn} ${_.social}`}>
+                    <h4>Join Us</h4>
+                    <ul className={_.socialLinks}>
+                        {socialLinks.map((link) => {
+                            return (
+                                <li key={link.id}>
+                                    <a
+                                        href={link.href}
+                                        style={{ color: link.color }}
+                                    >
+                                        {link.icon}
+                                    </a>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </div>
+            </div>
+            {/* <form className={_.contactUs}>
+                <h4> Contact Us </h4>
+                <textarea placeholder="Leave a message" />
+                <input type="submit" name="Submit" value="Send" />
+            </form> */}
             <div className={_.signature}>
                 <p>
                     Handcrafted with{" "}

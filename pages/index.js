@@ -29,7 +29,7 @@ const LandingPage = () => {
                 </div>
             </section>
             <section className={_.features}>
-                <ScrollAnimation animateIn='bounce' initiallyVisible={true}>
+                <ScrollAnimation animateIn='bounce' animateOnce={true}>
                     <h1>Key Features</h1>
                 </ScrollAnimation>
                 <hr />
@@ -37,7 +37,7 @@ const LandingPage = () => {
                     return (
                         <ScrollAnimation 
                             key={feature.id} 
-                            animateIn={i % 2 == 1 ? 'fadeInLeft' : 'fadeInRight'} 
+                            animateIn={i % 2 == 1 ? 'bounceInLeft' : 'bounceInRight'} 
                             className={_.feature}
                             animateOnce={true}
                         >
@@ -45,7 +45,7 @@ const LandingPage = () => {
                             <div className={_.featureContent}>
                                 <h2>{feature.title}</h2>
                                 <p>{feature.text}</p>
-                            </div>
+                            </div>  
                         </ScrollAnimation>
                     );
                 })}

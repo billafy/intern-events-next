@@ -1,71 +1,111 @@
 @import "./templates/_colors.scss";
 
 .footer {
-    width: 100%;
-    background: $border;
+    border-top: 1px solid $button;
+    .footerInfo {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-content: space-evenly;
+        margin: 1rem 0px;
+        .footerColumn {
+            text-align: center;
+            h4 {
+                font-size: 1.1rem;
+                color: $button;
+            }
+            ul {
+                padding: 0px 1rem;
+                li {
+                    margin-bottom: 1rem;
+                    color: $text;
+                    a {
+                        color: inherit;
+                        text-decoration: none;
+                        font-weight: 300;
+                        transition: all 0.3s ease 0s;
+                        &:hover {
+                            color: $buttonHover;
+                        }
+                    }
+                }
+            }
+            .socialLinks {
+                padding: 1rem;
+                display: flex;
+                justify-content: center;
+                a {
+                    margin: 0.5rem;
+                    color: $text;
+                    transition: all 0.3s ease;
+                    font-size: 1.5rem;
+                    &:hover {
+                        transform: scale(1.3)
+                    }
+                }
+            }
+        }
+    }
+    .contactUs {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 3rem 0rem;
+        h4 {
+            font-size: 1.1rem;
+            color: $button;
+        }
+        textarea {
+            resize: none;
+            height: 150px;
+            border: 1px solid $text;
+            background: transparent;
+            width: 250px;
+            max-width: 85%; 
+            padding: 0.5rem;
+            color: $text;
+            &:focus {
+                border: 1px solid $buttonHover;
+            }
+        }
+        input {
+            background: $button;
+            border: none;
+            margin: 1rem 0px;
+            width: 75px;
+            max-width: 90%;
+            height: 30px;
+            color: $text;
+            border-radius: 9999px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            &:hover {
+                background: $buttonHover;
+            }
+        }
+    }
     .signature {
-        font-size: 1rem;
-        background: $background;
-        width: 100%;
         display: flex;
         justify-content: center;
+        align-items: center;
         color: $text;
+        background: $border;
     }
-    /* .rows {
-        display: flex;
-        flex-wrap: wrap;
-        padding-top: 1em;
+}
+@media (min-width: 468px) and (max-width: 800px) {
+    .footer {
+        .footerInfo {
+            grid-template-columns: 1fr 1fr;
+            grid-row-gap: 1em;
+        }
+        .social {
+            grid-column: 1/3;
+        }
     }
-    .cols {
-        padding: 0rem 3rem;
+}
+@media (min-width: 0px) and (max-width: 467px) {
+    .footer {
+        .footerInfo {
+            grid-template-columns: 1fr;
+        }
     }
-    .cols h4 {
-        font-size: 18px;
-        text-decoration: capitalize;
-        color: #000;
-    }
-    .cols ul {
-        padding-top: 1em;
-    }
-    .cols ul li {
-        margin-bottom: 1em;
-    }
-    .cols ul li a {
-        text-decoration: none;
-        color: $text;
-        font-weight: 300;
-    }
-    .cols ul li a:hover {
-        font-weight: 500;
-        color: #fff;
-        transition: all 0.3s ease 0s;
-    }
-    .social {
-        padding-top: 1em;
-        display: flex;
-        justify-content: center;
-    }
-    .social a {
-        padding: 0.5em;
-        color: #fff;
-        font-size: 20px;
-        display: inline-block;
-        text-align: center;
-    }
-    .fb:hover {
-        color: #0353a4;
-        transition: all 0.3s ease 0s;
-    }
-    .tweet:hover {
-        color: #00b4d8;
-        transition: all 0.3s ease 0s;
-    }
-    .insta:hover {
-        color: #e1306c;
-        transition: all 0.3s ease 0s;
-    }
-    .linkdn:hover {
-        color: #006192;
-        transition: all 0.3s ease 0s;
-    } */
 }

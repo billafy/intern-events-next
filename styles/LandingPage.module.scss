@@ -5,11 +5,12 @@
 .landingPage {
     padding: 0px 1rem;
     overflow-x: hidden;
+    margin-bottom: 3rem;
     .hero {
         display: flex;
         justify-content: center;
         align-items: center;
-        min-height: 100vh;
+        min-height: calc(100vh - 150px);
         max-height: auto;
         .heroContent {
             flex: 0.7;
@@ -95,7 +96,7 @@
             }
         }
     }
-    @media (min-width: 0px) and (max-width: 868px) {
+    @media (min-width: 0px) and (max-width: 767px) {
         padding: 0.5rem;
         .hero {
             flex-direction: column;
@@ -109,6 +110,7 @@
         .features {
             .feature {
                 flex-direction: column;
+                padding: 1rem 2rem;
                 &:nth-child(even) {
                     flex-direction: column;
                 }

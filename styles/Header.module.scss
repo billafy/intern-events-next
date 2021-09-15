@@ -1,0 +1,93 @@
+@import "./templates/_colors.scss";
+
+.header {
+    display: grid;
+    grid-template-columns: 20% 50% 30%;
+    align-items: center;
+    height: 150px;
+    .logo {
+        cursor: pointer;
+        img {
+            height: 10rem;
+        }
+    }
+    ul {
+        justify-self: center;
+        display: flex;
+        li {
+            padding: 0px 0.5rem;
+            a {
+                transition: all 0.3s ease;
+                text-decoration: none;
+                color: $text;
+                padding: 0.75rem;
+                outline: none;
+                border: none;
+                border-radius: 30px;
+                &:hover {
+                    color: $buttonHover;
+                }
+            }
+            span {
+                position: absolute;
+                z-index: 1;
+                background: $background;
+                display: none;
+                padding: 1rem;
+                ul {
+                    display: block;
+                    border: 2px $button solid;
+                    border-radius: 0.8rem;
+                    padding: 1rem 0px 0px 0px;
+                    margin: 0px;
+                    li {
+                        padding: 0px;
+                        margin-bottom: 1rem;
+                    }
+                }
+            }
+            &:hover {
+                span {
+                    display: block;
+                }
+            }
+        }
+    }
+    .loginSignupButtons {
+        justify-self: right; 
+        display: flex;
+        button {
+            margin-right: 0.5rem;
+        }
+    }
+    .hamburger {
+        justify-self: right;
+        display: none;
+        cursor: pointer;
+        button {
+            background: transparent;
+            border: none;
+            transition: all 0.3s ease;
+            font-size: 2.3rem;
+            color: $text;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    @media (min-width: 0px) and (max-width: 767px) {
+        grid-template-columns: 50% auto 50px;
+        ul {
+            display: none;
+        }
+        .hamburger {
+            display: block;
+        }
+    }
+    @media (min-width: 0px) and (max-width: 567px) {
+        grid-template-columns: 1fr 1fr;
+        .loginSignupButtons {
+            display: none;
+        }
+    }
+}

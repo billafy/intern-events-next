@@ -1,19 +1,53 @@
+import {
+    FaFacebook,
+    FaTwitter,
+    FaInstagram,
+    FaLinkedin,
+    FaGithub,
+} from "react-icons/fa";
+
 export const navLinks = [
 	{
-		text: "Home",
+		text: "Internships",
 		href: "/",
+		subLinks: [
+			{
+				text: 'Search Internships',
+				href: '/'
+			},
+			{
+				text: 'Applied Internships',
+				href: '/'
+			},	
+		],
 	},
 	{
-		text: "Login",
+		text: "Events",
 		href: "/auth/login",
+		subLinks: [
+			{
+				text: 'Search Events',
+				href: '/'
+			},
+			{
+				text: 'Applied Events',
+				href: '/'
+			},	
+		],
 	},
 	{
-		text: "Signup",
+		text: "Social",
 		href: "/auth/signup",
-	},
-	{
-		text: "Contact Us",
-		href: "/",
+		subLinks: [
+			{
+				text: 'Timeline',
+				href: '/'
+			},
+			{
+				text: 'Create a Post',
+				href: '/'
+			},	
+		],
 	},
 ];
 
@@ -43,3 +77,81 @@ export const features = [
 		image: "/illustrations/illustration6.png",
 	},	
 ];
+
+export const footerLinks = [
+	{
+		id: 1,
+		heading: 'Company',
+		links: [
+			{
+				id: 1,
+				text: 'About Us',
+				href: '',
+			},
+			{
+				id: 2,
+				text: 'Other Services',
+				href: '',
+			},
+			{
+				id: 3,
+				text: 'Credits',
+				href: '',
+			},	
+		]
+	},
+	{
+		id: 2,
+		heading: 'Get Help',
+		links: [
+			{
+				id: 1,
+				text: 'FAQ',
+				href: '',
+			},
+			{
+				id: 2,
+				text: 'Privacy Policy',
+				href: '',
+			},
+			{
+				id: 3,
+				text: 'Terms and Conditions',
+				href: '',
+			},	
+		]
+	},
+]
+
+export const socialLinks  = [
+	{
+		id: 1,
+		icon: <FaFacebook/>,
+		color: '#0353a4',
+		href: ''
+	},
+	{
+		id: 2,
+		icon: <FaTwitter/>,
+		color: '#00b4d8',
+		href: ''
+	},
+	{
+		id: 3,
+		icon: <FaInstagram/>,
+		color: '#e1306c',
+		href: ''
+	},
+	{
+		id: 4,
+		icon: <FaLinkedin/>,
+		color: '#006192',
+		href: ''
+	},
+	{
+		id: 5,
+		icon: <FaGithub/>,
+		color: '#000',
+		href: ''
+	},
+]

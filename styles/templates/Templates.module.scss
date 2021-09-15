@@ -1,0 +1,17 @@
+@import "./colors.scss";
+
+.btn {
+	height: 35px;
+    width: 75px;
+    background: $button;
+    color: $text;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    border-radius: 9999px;
+    padding: 0.5rem 0.5rem;
+    transition: 0.1s all ease;
+    &:hover {
+        background: $buttonHover;
+    }
+}

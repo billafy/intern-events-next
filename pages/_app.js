@@ -14,6 +14,9 @@ import urls from "../utils/urls";
 
 import "../styles/globals.scss";
 
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+
 const Main = ({ Component, pageProps }) => {
     const router = useRouter();
     const dispatch = useDispatch();
@@ -57,11 +60,11 @@ const Main = ({ Component, pageProps }) => {
                 <meta name="" content="" />
                 <title>InternEvents</title>
             </Head>
-            {/* <Navbar /> */}
+            <Header />
             <main className="main-container">
                 {loading ? <Loading /> : <Component {...pageProps} />}
             </main>
-            {/* <Footer /> */}
+            <Footer />
         </>
     );
 };
