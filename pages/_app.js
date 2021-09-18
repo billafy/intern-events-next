@@ -20,7 +20,7 @@ import Footer from '../components/Footer'
 const Main = ({ Component, pageProps }) => {
     const router = useRouter();
     const dispatch = useDispatch();
-    const { loading } = useSelector(
+    const { width, loading} = useSelector(
         (state) => state.auth
     );
 
@@ -33,6 +33,21 @@ const Main = ({ Component, pageProps }) => {
     };
 
     useEffect(() => {
+        const handleResize = () => {
+            const newWidth = window.innerWidth
+            dispatch({type: 'SET_WIDTH', payload: {newWidth}});
+        }
+
+        window.addEventListener('resize', handleResize)
+
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
+    })
+
+    useEffect(() => {
+        const newWidth = window.innerWidth
+        dispatch({type: 'SET_WIDTH', payload: {newWidth}});
         refresh();
         setTimeout(() => {
             dispatch({ type: "STOP_LOAD" });

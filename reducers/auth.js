@@ -6,6 +6,7 @@ const initialState = {
 	loading: true,
 	isLoggedIn: false,
 	account: {},
+	width: 0,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -26,8 +27,16 @@ const authReducer = (state = initialState, action) => {
 				isLoggedIn: true,
 				account: action.payload.account,
 			};
+		case "LOGOUT": 
+			return {
+				...state,
+				isLoggedIn: false,
+				account: {},
+			}
 		case "UPDATE_INPUT":
 			return { ...state, accountInput: state.accountInput };
+		case "SET_WIDTH":
+			return {...state, width: action.payload.newWidth};
 		default:
 			return state;
 	}

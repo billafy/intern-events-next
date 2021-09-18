@@ -15,6 +15,7 @@ export const initialState = {
         loading: true,
         isLoggedIn: false,
         account: {},
+        width: 0,
     },
 };
 

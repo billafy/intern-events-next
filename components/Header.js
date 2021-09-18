@@ -1,3 +1,5 @@
+import {useState} from 'react'
+
 import Link from "next/link";
 
 import { navLinks } from "../utils/staticData";
@@ -8,14 +10,27 @@ import _ from "../styles/Header.module.scss";
 
 import templates from "../styles/templates/Templates.module.scss";
 
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
 import Navbar from './Navbar'
 
-const Header = () => {
-    const {isLoggedIn} = useSelector(state => state.auth)
+import {reqDelete} from '../utils/customRequests'
 
-    console.log(isLoggedIn)
+import {getImage} from '../utils/utils'
+
+import urls from '../utils/urls'
+
+const Header = () => {
+    const dispatch = useDispatch()
+    const {isLoggedIn, width, account} = useSelector(state => state.auth)
+    const [showDropDown, setShowDropDown] = useState(false);
+
+    const logout = async () => {
+        const data = await reqDelete(urls.logout + account._id);
+        console.log(data)
+        if(data.success) 
+            dispatch({type: 'LOGOUT'})
+    }
 
     return (
         <nav className={_.header}>
@@ -27,11 +42,20 @@ const Header = () => {
                     />
                 </Link>
             </div>
-            <Navbar/>
-            {isLoggedIn
+            {((width > 767) || showDropDown)
+                &&
+                <Navbar/>
+            }
+            {((width > 567) || showDropDown)
+                &&
+                (isLoggedIn
                 ?
-                <div className='profileButton'>
-                    Profile    
+                <div className={_.profileHeader}>
+                    <a>
+                        {account.accountType === 'student' ? `${account.details.firstName} ${account.details.lastName}` : account.details.name}
+                    </a>
+                    <img className={_.profilePicture} src={getImage(account.profilePicture)} alt='Profile'/>
+                    <button onClick={logout} className={templates.btn}>Logout</button>
                 </div>
                 :
                 <div className={_.loginSignupButtons}>
@@ -45,10 +69,10 @@ const Header = () => {
                             Sign Up
                         </button>
                     </Link>
-                </div>
+                </div>)
             }
-            <div className={_.hamburger}>
-                <button>
+            <div className={`${_.hamburger} ${showDropDown ? _.clickedHamburger : ''}`}>
+                <button onClick={() => setShowDropDown(!showDropDown)}>
                     <GiHamburgerMenu />
                 </button>
             </div>
