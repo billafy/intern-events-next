@@ -1,15 +1,15 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { getImage, getResume } from "../utils/utils";
 import urls from "../utils/urls";
 import { GiMale, GiFemale } from "react-icons/gi";
-import { reqPost } from "../utils/customRequests";
+import { reqPost, reqPut } from "../utils/customRequests";
 import { BiImageAdd } from "react-icons/bi";
 import { MdAdd } from "react-icons/md";
 import _ from "../styles/MyProfile.module.scss";
 import Popup from "../components/Popup";
+import templates from "../styles/templates/Templates.module.scss";
 
 const MyProfile = () => {
 	const router = useRouter();
@@ -18,6 +18,11 @@ const MyProfile = () => {
 	} = useSelector((state) => state);
 	const dispatch = useDispatch();
 	const newProfilePicture = useState("");
+	const [project, setProject] = useState({
+		title: "",
+		link: "",
+		description: "",
+	});
 
 	const uploadProfilePicture = async (event) => {
 		const profilePicture = event.target.files[0];
@@ -58,6 +63,22 @@ const MyProfile = () => {
 					payload: { resume: data.body.resume },
 				});
 		}
+	};
+
+	const addProject = async (event) => {
+		event.preventDefault();
+		console.log(account)
+		const response = await reqPut(urls.updateAccount + account._id, {
+			account: {
+				...account,
+				details: {
+					...account.details,
+					projects: [...account.details.projects, project],
+				},
+			},
+		});
+		if(response.success) 
+			dispatch({type: 'UPDATE_ACCOUNT', payload: {account: response.body.account}})
 	};
 
 	useEffect(() => {
@@ -138,19 +159,58 @@ const MyProfile = () => {
 							<div className={_.projects}>
 								<h3>Projects</h3>
 								<ul>
-									<li>
-										<h4>BillaBot</h4>
-										<p>A Discord Bot</p>
-										<a
-											href="https://github.com/billafy/BillaBot"
-											target="_blank"
-										>
-											View Project
-										</a>
-									</li>
+									{account.details.projects.map((proj, index) => {
+										return (
+											<li key={index}> 
+												<h4>{proj.title}</h4>
+												<p>{proj.description}</p>
+												<a href={proj.link} target='_blank'>View Project</a>
+											</li>
+										)
+									})}
 								</ul>
 								<Popup button={<MdAdd />}>
-									<h1>Add A Project</h1>
+									<form action="" className={_.projectForm}>
+										<h1>Add a project</h1>
+										<input
+											type="text"
+											placeholder="Project Title"
+											value={project.title}
+											onChange={({ target: { value } }) =>
+												setProject({
+													...project,
+													title: value,
+												})
+											}
+										/>
+										<input
+											type="text"
+											placeholder="Project Link"
+											value={project.link}
+											onChange={({ target: { value } }) =>
+												setProject({
+													...project,
+													link: value,
+												})
+											}
+										/>
+										<textarea
+											placeholder="Project Description (Optional)"
+											value={project.description}
+											onChange={({ target: { value } }) =>
+												setProject({
+													...project,
+													description: value,
+												})
+											}
+										/>
+										<input
+											type="submit"
+											value="Save"
+											className={templates.btn}
+											onClick={addProject}
+										/>
+									</form>
 								</Popup>
 							</div>
 							<div className={_.skills}>

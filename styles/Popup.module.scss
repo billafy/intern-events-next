@@ -4,27 +4,32 @@
 	.popup {
 		background: $background;
 		border: 2px solid $secondary;
-		width: 500px;
+		width: 300px;
 		max-width: 90%;
-		height: 500px;
+		max-height: 90vh;
+		overflow-y: auto;
 	    position: fixed;
 	    left: 50%;
 	    top: 50%;
 	    transform: translate(-50%, -50%);
-	    > * {
-	    	padding: 1rem;
+	    padding: 2rem;
+	    .closeButton {
+	    	text-align: right;
+		    button {
+		    	background: transparent;
+		    	border: 0px;
+		    	color: $secondary;
+		    	padding: 0px;
+		    	transition: all 0.3s ease;
+		    	&:hover {
+		    		transform: scale(1.3)
+		    	}
+		    }
 	    }
-	    button {
-	    	background: transparent;
-	    	border: 0px;
-	    	color: $secondary;
-	    	float: right;
-	    	margin: 0.7rem 0.5rem 0px 0px;
-	    	padding: 0px;
-	    	transition: all 0.3s ease;
-	    	&:hover {
-	    		transform: scale(1.3)
-	    	}
+	    section {
+	    	display: flex;
+	    	justify-content: center;
+	    	align-items: center;
 	    }
 	}
 }

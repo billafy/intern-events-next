@@ -9,6 +9,7 @@ const urls = {
 	logout: domain + "accounts/logout/",
 	uploadProfilePicture: domain + 'accounts/uploadProfilePicture/',
 	uploadResume: domain + 'accounts/uploadResume/',
+	updateAccount: domain + 'accounts/updateAccount/'
 };
 
 export default urls;

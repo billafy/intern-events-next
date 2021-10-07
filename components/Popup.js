@@ -12,10 +12,14 @@ const Popup = ({children, button}) => {
 			</button>
 			{showPopup && 
 				<div className={_.popup}>
-					<button onClick={() => setShowPopup(false)}>
-						<AiOutlineClose/>
-					</button>
-					{children}
+					<div className={_.closeButton}>
+						<button onClick={() => setShowPopup(false)}>
+							<AiOutlineClose/>
+						</button>
+					</div>
+					<section>
+						{children}
+					</section>
 				</div>
 			}
 		</div>

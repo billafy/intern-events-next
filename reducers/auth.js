@@ -37,6 +37,8 @@ const authReducer = (state = initialState, action) => {
 			return { ...state, accountInput: state.accountInput };
 		case "SET_WIDTH":
 			return { ...state, width: action.payload.newWidth };
+		case "UPDATE_ACCOUNT" : 
+			return {...state, account: action.payload.account}
 		case "PROFILE_PICTURE":
 			return {
 				...state,
