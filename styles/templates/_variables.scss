@@ -1,0 +1,40 @@
+@import "_colors";
+
+$font-sizes: (
+    "h1": 1.6rem,
+    "h2": 1.3rem,
+    "p": 1.1rem,
+);
+$font-weight: (
+    "regular": 400,
+    "bold": 500,
+);
+$font: "Georama", sans-serif;
+@mixin section_styles {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+@mixin global-h1 {
+    font-family: $font;
+    font-weight: map-get($font-weight, bold);
+    font-size: map-get($font-sizes, h1);
+    color: $text;
+}
+@mixin global-h2 {
+    font-family: $font;
+    font-weight: map-get($font-weight, regular);
+    font-size: map-get($font-sizes, h2);
+    color: $text;
+}
+@mixin global-p {
+    font-family: $font;
+    font-weight: map-get($font-weight, regular);
+    font-size: map-get($font-sizes, p);
+    color: $text;
+    text-align: justify;
+    width: 50%;
+}

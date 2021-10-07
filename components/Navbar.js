@@ -2,7 +2,7 @@ import React from 'react';
 import {navLinks} from '../utils/staticData'
 import Link from 'next/link'
 
-const Navbar = ({}) => {
+const Navbar = () => {
 	return (
 		<ul>
             {navLinks.map((link) => {

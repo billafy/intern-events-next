@@ -7,6 +7,8 @@ const urls = {
 	createCompanyAccount: domain + "accounts/createCompanyAccount/",
 	refresh: domain + "accounts/refresh/",
 	logout: domain + "accounts/logout/",
+	uploadProfilePicture: domain + 'accounts/uploadProfilePicture/',
+	uploadResume: domain + 'accounts/uploadResume/',
 };
 
 export default urls;

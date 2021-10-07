@@ -1,0 +1,163 @@
+@import "./templates/_colors.scss";
+@import "./templates/_variables.scss";
+
+.myProfile {
+	display: grid;
+	color: $text;
+	grid-template-columns: 1fr 2fr;
+	grid-column-gap: 5rem;
+	grid-row-gap: 3rem;
+	width: 900px;
+	max-width: 90%;
+	margin: auto;
+	> h1 {
+		text-align: center;
+		grid-column: 1/3;
+	}
+	.profileDetails {
+		display: flex;
+		flex-direction: column;
+		justify-self: right;
+		> div {
+			margin-bottom: 1rem;
+		}
+		.profilePicture {
+			width: 10em;
+			height: 11em;
+			border-radius: 50%;
+			justify-self: right;
+			img {
+				border: 1px solid $text;
+				width: 100%;
+				height: 10em;
+				object-fit: cover;
+				border-radius: 50%;
+			}
+			input {
+				opacity: 0;
+				display: block;
+				width: 70px;
+				height: 35px;
+				margin: auto;
+				position: relative;
+				z-index: 1;
+				cursor: pointer;
+			}
+			.uploadProfilePicture {
+				opacity: 0;
+				display: flex;
+				justify-content: center;
+				position: relative;
+				top: -35px;
+			}
+			svg {
+				font-size: 2rem;
+				cursor: pointer;
+			}
+			&:hover {
+				.uploadProfilePicture {
+					opacity: 1;
+				}
+			}
+		}
+		.profileMain {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			justify-self: left;
+			h1 {
+				display: flex;
+				align-items: center;
+				svg {
+					font-size: 1.8rem;
+					margin-left: 0.5rem;
+				}
+			}
+			h1,
+			p {
+				margin: 1rem 0px 0px 0px;
+			}
+		}
+		.followCount {
+			display: flex;
+			div {
+				display: grid;
+				margin-right: 1rem;
+				p {
+					text-align: center;
+					margin: 0.5rem 0px;
+				}
+			}
+		}
+		.description {
+			font-size: 0.9rem;
+			span {
+				color: $secondary;
+			}
+			p {
+			}
+		}
+	}
+	.profileInfo {
+		display: flex;	
+		flex-direction: column;
+		border: 1px solid $border;
+		h3 {
+			text-transform: uppercase;
+		}
+		> div {
+			padding: 1rem;
+			display: flex;
+			flex-direction: column;
+			justify-items: flex-end;
+			border-bottom: 1px solid $border;
+		}
+		.projects, .skills {
+			ul {
+				margin: 0px 0px 1rem 0px;
+				padding-left: 1.5rem;
+				li {
+					list-style-type: disc;
+					p, a {
+						font-size: 0.9rem;
+					}
+					a {
+						color: $text;
+						&:hover {
+							color: $link;
+						}
+					}
+				}
+			}
+			button {
+				background: transparent;
+				border: 0px;
+				color: $secondary;
+				font-size: 1.5rem;
+				transition: all 0.3s ease;
+				&:hover {
+					transform: scale(1.3);
+				}
+			}
+		}
+		.resume {
+			a {
+				font-size: 0.9rem;
+				color: $text;
+				margin-bottom: 1rem;
+				&:hover {
+					color: $link;
+				}
+			}
+			input[type=file]::file-selector-button {
+				background: $secondary;
+				border: 0px;
+				border-radius: 9999px;
+				font-size: 1rem;
+				height: 35px;
+				width: 100px;
+				color: $text;
+			}
+		}
+	}
+}

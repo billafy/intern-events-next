@@ -1,0 +1,30 @@
+@import "./templates/_colors.scss";
+
+.popupContainer {
+	.popup {
+		background: $background;
+		border: 2px solid $secondary;
+		width: 500px;
+		max-width: 90%;
+		height: 500px;
+	    position: fixed;
+	    left: 50%;
+	    top: 50%;
+	    transform: translate(-50%, -50%);
+	    > * {
+	    	padding: 1rem;
+	    }
+	    button {
+	    	background: transparent;
+	    	border: 0px;
+	    	color: $secondary;
+	    	float: right;
+	    	margin: 0.7rem 0.5rem 0px 0px;
+	    	padding: 0px;
+	    	transition: all 0.3s ease;
+	    	&:hover {
+	    		transform: scale(1.3)
+	    	}
+	    }
+	}
+}

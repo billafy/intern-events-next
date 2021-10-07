@@ -27,16 +27,35 @@ const authReducer = (state = initialState, action) => {
 				isLoggedIn: true,
 				account: action.payload.account,
 			};
-		case "LOGOUT": 
+		case "LOGOUT":
 			return {
 				...state,
 				isLoggedIn: false,
 				account: {},
-			}
+			};
 		case "UPDATE_INPUT":
 			return { ...state, accountInput: state.accountInput };
 		case "SET_WIDTH":
-			return {...state, width: action.payload.newWidth};
+			return { ...state, width: action.payload.newWidth };
+		case "PROFILE_PICTURE":
+			return {
+				...state,
+				account: {
+					...state.account,
+					profilePicture: action.payload.profilePicture,
+				},
+			};
+		case "RESUME":
+			return {
+				...state,
+				account: {
+					...state.account,
+					details: {
+						...state.account.details,
+						resume: action.payload.resume,
+					},
+				},
+			};
 		default:
 			return state;
 	}

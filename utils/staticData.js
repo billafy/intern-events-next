@@ -23,7 +23,7 @@ export const navLinks = [
 	},
 	{
 		text: "Events",
-		href: "/auth/login",
+		href: "/",
 		subLinks: [
 			{
 				text: 'Search Events',
@@ -37,7 +37,7 @@ export const navLinks = [
 	},
 	{
 		text: "Social",
-		href: "/auth/signup",
+		href: "/",
 		subLinks: [
 			{
 				text: 'Timeline',

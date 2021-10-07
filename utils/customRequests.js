@@ -7,11 +7,11 @@ export const reqGet = async (url) => {
 	return data;
 };
 
-export const reqPost = async (url, body = {}) => {
+export const reqPost = async (url, body = {}, contentType = 'application/json') => {
 	const response = await fetch(url, {
 		method: "POST",
 		headers: {
-			"Content-Type": "application/json",
+			"Content-Type": contentType,
 		},
 		body: JSON.stringify(body),
 		credentials: "include",
