@@ -23,6 +23,9 @@ const MyProfile = () => {
 		link: "",
 		description: "",
 	});
+	const [skill, setSkill] = useState("");
+	const [showProjects, setShowProjects] = useState(false);
+	const [showSkills, setShowSkills] = useState(false);
 
 	const uploadProfilePicture = async (event) => {
 		const profilePicture = event.target.files[0];
@@ -40,8 +43,8 @@ const MyProfile = () => {
 			const data = await response.json();
 			if (data.success)
 				dispatch({
-					type: "PROFILE_PICTURE",
-					payload: { profilePicture: data.body.profilePicture },
+					type: "UPDATE_ACCOUNT",
+					payload: { account: data.body.account },
 				});
 		}
 	};
@@ -59,16 +62,16 @@ const MyProfile = () => {
 			const data = await response.json();
 			if (data.success)
 				dispatch({
-					type: "RESUME",
-					payload: { resume: data.body.resume },
+					type: "UPDATE_ACCOUNT",
+					payload: { account: data.body.account },
 				});
 		}
 	};
 
 	const addProject = async (event) => {
 		event.preventDefault();
-		console.log(account)
-		const response = await reqPut(urls.updateAccount + account._id, {
+		console.log(account);
+		const data = await reqPut(urls.updateAccount + account._id, {
 			account: {
 				...account,
 				details: {
@@ -77,8 +80,33 @@ const MyProfile = () => {
 				},
 			},
 		});
-		if(response.success) 
-			dispatch({type: 'UPDATE_ACCOUNT', payload: {account: response.body.account}})
+		if (data.success) {
+			setShowProjects(false);
+			dispatch({
+				type: "UPDATE_ACCOUNT",
+				payload: { account: data.body.account },
+			});
+		}
+	};
+
+	const addSkill = async (event) => {
+		event.preventDefault();
+		const data = await reqPut(urls.updateAccount + account._id, {
+			account: {
+				...account,
+				details: {
+					...account.details,
+					skills: [...account.details.skills, skill],
+				},
+			},
+		});
+		if (data.success) {
+			setShowSkills(false);
+			dispatch({
+				type: "UPDATE_ACCOUNT",
+				payload: { account: data.body.account },
+			});
+		}
 	};
 
 	useEffect(() => {
@@ -159,17 +187,28 @@ const MyProfile = () => {
 							<div className={_.projects}>
 								<h3>Projects</h3>
 								<ul>
-									{account.details.projects.map((proj, index) => {
-										return (
-											<li key={index}> 
-												<h4>{proj.title}</h4>
-												<p>{proj.description}</p>
-												<a href={proj.link} target='_blank'>View Project</a>
-											</li>
-										)
-									})}
+									{account.details.projects.map(
+										(proj, index) => {
+											return (
+												<li key={index}>
+													<h4>{proj.title}</h4>
+													<p>{proj.description}</p>
+													<a
+														href={proj.link}
+														target="_blank"
+													>
+														View Project
+													</a>
+												</li>
+											);
+										}
+									)}
 								</ul>
-								<Popup button={<MdAdd />}>
+								<Popup
+									button={<MdAdd />}
+									showPopup={showProjects}
+									setShowPopup={setShowProjects}
+								>
 									<form action="" className={_.projectForm}>
 										<h1>Add a project</h1>
 										<input
@@ -216,10 +255,33 @@ const MyProfile = () => {
 							<div className={_.skills}>
 								<h3>Skills</h3>
 								<ul>
-									<li>Python</li>
+									{account.details.skills.map(
+										(skl, index) => (
+											<li key={index}>{skl}</li>
+										)
+									)}
 								</ul>
-								<Popup button={<MdAdd />}>
-									<h1>Add A Skill</h1>
+								<Popup
+									button={<MdAdd />}
+									showPopup={showSkills}
+									setShowPopup={setShowSkills}
+								>
+									<form className={_.skillsForm}>
+										<h1>Add a skill</h1>
+										<input
+											type="text"
+											placeholder="Skill"
+											value={skill}
+											onChange={({ target: { value } }) =>
+												setSkill(value)
+											}
+										/>
+										<input
+											type="submit"
+											value="Save"
+											onClick={addSkill}
+										/>
+									</form>
 								</Popup>
 							</div>
 							<div className={_.resume}>

@@ -1,11 +1,8 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import Link from "next/link";
 import Head from "next/head";
-
 import { defaultInputs } from "../utils/inputFields";
-
 import _ from "../styles/Form.module.scss";
 
 const Form = ({ title, inputFields, submitButton, link, dropDown }) => {

@@ -14,15 +14,13 @@ import urls from "../utils/urls";
 
 import "../styles/globals.scss";
 
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const Main = ({ Component, pageProps }) => {
     const router = useRouter();
     const dispatch = useDispatch();
-    const { width, loading} = useSelector(
-        (state) => state.auth
-    );
+    const { width, loading } = useSelector((state) => state.auth);
 
     const refresh = async () => {
         const res = await reqPost(urls.refresh);
@@ -34,20 +32,20 @@ const Main = ({ Component, pageProps }) => {
 
     useEffect(() => {
         const handleResize = () => {
-            const newWidth = window.innerWidth
-            dispatch({type: 'SET_WIDTH', payload: {newWidth}});
-        }
+            const newWidth = window.innerWidth;
+            dispatch({ type: "SET_WIDTH", payload: { newWidth } });
+        };
 
-        window.addEventListener('resize', handleResize)
+        window.addEventListener("resize", handleResize);
 
         return () => {
-            window.removeEventListener('resize', handleResize)
-        }
-    })
+            window.removeEventListener("resize", handleResize);
+        };
+    });
 
     useEffect(() => {
-        const newWidth = window.innerWidth
-        dispatch({type: 'SET_WIDTH', payload: {newWidth}});
+        const newWidth = window.innerWidth;
+        dispatch({ type: "SET_WIDTH", payload: { newWidth } });
         refresh();
         setTimeout(() => {
             dispatch({ type: "STOP_LOAD" });
@@ -71,7 +69,10 @@ const Main = ({ Component, pageProps }) => {
                     href="https://fonts.googleapis.com/css2?family=Georama:wght@300&display=swap"
                     rel="stylesheet"
                 />
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"/>
+                <link
+                    rel="stylesheet"
+                    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+                />
                 <meta name="" content="" />
                 <title>InternEvents</title>
             </Head>

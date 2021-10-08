@@ -38,3 +38,30 @@ $font: "Georama", sans-serif;
     text-align: justify;
     width: 50%;
 }
+@mixin button {
+    height: 35px;
+    width: 120px;
+    max-width: 90%;
+    background: $button;
+    color: $text;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    border-radius: 9999px;
+    padding: 0.5rem 0.5rem;
+    transition: 0.1s all ease;
+    &:focus {
+        background: $buttonHover;
+    }
+}
+@mixin textField {
+    display: block;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 1rem;
+    color: $secondary;
+    background: transparent;
+    border: 0px;
+    border-bottom: 2px solid $text;
+}

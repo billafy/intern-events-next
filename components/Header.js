@@ -3,7 +3,6 @@ import Link from "next/link";
 import { navLinks } from "../utils/staticData";
 import { GiHamburgerMenu } from "react-icons/gi";
 import _ from "../styles/Header.module.scss";
-import templates from "../styles/templates/Templates.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "./Navbar";
 import { reqDelete } from "../utils/customRequests";
@@ -54,17 +53,17 @@ const Header = () => {
                             src={getImage(account.profilePicture)}
                             alt="Profile"
                         />
-                        <button onClick={logout} className={templates.btn}>
+                        <button onClick={logout}>
                             Logout
                         </button>
                     </div>
                 ) : (
                     <div className={_.loginSignupButtons}>
                         <Link href="/auth/login">
-                            <button className={templates.btn}>Login</button>
+                            <button>Login</button>
                         </Link>
                         <Link href="/auth/signup">
-                            <button className={templates.btn}>Sign Up</button>
+                            <button>Sign Up</button>
                         </Link>
                     </div>
                 ))}

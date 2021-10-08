@@ -1,4 +1,5 @@
 @import "./templates/_colors.scss";
+@import "./templates/_variables.scss";
 
 .formContainer {
     display: flex;
@@ -11,10 +12,10 @@
         max-width: 90%;
         border-radius: 30px 0px 30px 0px;
         border: solid $button;
+        text-align: center;
         h2 {
             color: $text;
             font-size: 2rem;
-            text-align: center;
         }
         .dropDown {
             width: 40%;
@@ -38,38 +39,17 @@
             margin-bottom: 2rem;
             input,
             select {
-                border: none;
-                border-bottom: 1px solid $text;
+                @include textField;
                 padding: 0px 5px;
-                background: transparent;
-                height: 30px;
-                width: 100%;
-                outline: none;
                 font-size: 1rem;
-                color: $secondary;
+                margin: 0px;
                 margin-left: 0.8rem;
-                &:focus {
-                    border-bottom: 2px solid $secondary;
-                }
             }
         }
 
         .submit input {
-            height: 35px;
-            width: 100%;
-            margin-top: 1em;
-            background: $button;
-            color: $text;
-            font-weight: bold;
-            outline: none;
-            border: none;
-            font-size: 1rem;
-            border-radius: 9999px;
-            padding: 0.5rem 0.5rem;
-            &:focus {
-                background: $buttonHover;
-                transition: 0.1s;
-            }
+            @include button;
+            margin-top: 1rem;
         }
 
         .link {

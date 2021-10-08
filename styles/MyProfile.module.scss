@@ -99,7 +99,7 @@
 		}
 	}
 	.profileInfo {
-		display: flex;	
+		display: flex;
 		flex-direction: column;
 		border: 1px solid $border;
 		h3 {
@@ -112,13 +112,15 @@
 			justify-items: flex-end;
 			border-bottom: 1px solid $border;
 		}
-		.projects, .skills {
+		.projects,
+		.skills {
 			ul {
 				margin: 0px 0px 1rem 0px;
 				padding-left: 1.5rem;
 				li {
 					list-style-type: disc;
-					p, a {
+					p,
+					a {
 						font-size: 0.9rem;
 					}
 					a {
@@ -139,28 +141,24 @@
 					transform: scale(1.3);
 				}
 			}
-			.projectForm {
+			.projectForm,
+			.skillsForm {
 				width: 100%;
 				text-align: center;
 				h1 {
 					margin: 0px 0px 1rem 0px;
 				}
-				input[type='text'], textarea {
-					display: block;
-					margin-bottom: 1rem;
-					width: 100%;
-					background: transparent;
-					border: 0px;
-					height: 35px;
-					border-bottom: 2px solid $text;
-					color: $secondary;
-					&:focus {
-						border-color: $secondary;
-					}
+				input[type="text"],
+				textarea {
+					@include textField;
 				}
 				textarea {
 					resize: none;
 					height: 100px;
+				}
+				input[type="submit"] {
+					@include button;
+					width: 90px;
 				}
 			}
 		}
@@ -173,14 +171,9 @@
 					color: $link;
 				}
 			}
-			input[type=file]::file-selector-button {
-				background: $secondary;
-				border: 0px;
-				border-radius: 9999px;
-				font-size: 1rem;
-				height: 35px;
-				width: 100px;
-				color: $text;
+			input[type="file"]::file-selector-button {
+				@include button;
+				width: 130px;
 			}
 		}
 	}
