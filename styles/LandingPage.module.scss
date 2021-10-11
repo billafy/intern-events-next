@@ -1,5 +1,6 @@
 @import './templates/_colors.scss';
 @import url("https://fonts.googleapis.com/css2?family=Georama:wght@100;200;300;400&display=swap");
+@import './templates/_variables.scss';
 @import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@100;300;400;500&display=swap");
 
 .landingPage {
@@ -28,15 +29,7 @@
                 margin-bottom: 2rem;
             }
             a {
-                background: $button;
-                border-radius: 1.25rem;
-                padding: 0.8rem;
-                text-decoration: none;
-                color: $text;
-                &:hover {
-                    background: $linkHover;
-                    transition: all 0.3s ease;
-                }
+                @include button;
             }
         }
         .heroImage {

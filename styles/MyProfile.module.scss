@@ -141,6 +141,9 @@
 					transform: scale(1.3);
 				}
 			}
+			.seeMore {
+				@include link1;
+			}
 			.projectForm,
 			.skillsForm {
 				width: 100%;
@@ -164,12 +167,8 @@
 		}
 		.resume {
 			a {
-				font-size: 0.9rem;
-				color: $text;
+				@include link2;
 				margin-bottom: 1rem;
-				&:hover {
-					color: $link;
-				}
 			}
 			input[type="file"]::file-selector-button {
 				@include button;

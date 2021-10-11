@@ -40,7 +40,6 @@
             input,
             select {
                 @include textField;
-                padding: 0px 5px;
                 font-size: 1rem;
                 margin: 0px;
                 margin-left: 0.8rem;
@@ -55,12 +54,8 @@
         .link {
             margin-top: 1rem;
             text-align: center;
-            font-size: 0.9rem;
             a {
-                color: $link;
-                &:focus {
-                    color: $linkHover;
-                }
+                @include link2;
             }
         }
 

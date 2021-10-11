@@ -4,12 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getImage, getResume } from "../utils/utils";
 import urls from "../utils/urls";
 import { GiMale, GiFemale } from "react-icons/gi";
-import { reqPost, reqPut } from "../utils/customRequests";
+import { reqPost } from "../utils/customRequests";
 import { BiImageAdd } from "react-icons/bi";
-import { MdAdd } from "react-icons/md";
 import _ from "../styles/MyProfile.module.scss";
-import Popup from "../components/Popup";
-import templates from "../styles/templates/Templates.module.scss";
+import Projects from "../components/MyProfile/Projects";
+import Skills from "../components/MyProfile/Skills";
 
 const MyProfile = () => {
 	const router = useRouter();
@@ -18,14 +17,6 @@ const MyProfile = () => {
 	} = useSelector((state) => state);
 	const dispatch = useDispatch();
 	const newProfilePicture = useState("");
-	const [project, setProject] = useState({
-		title: "",
-		link: "",
-		description: "",
-	});
-	const [skill, setSkill] = useState("");
-	const [showProjects, setShowProjects] = useState(false);
-	const [showSkills, setShowSkills] = useState(false);
 
 	const uploadProfilePicture = async (event) => {
 		const profilePicture = event.target.files[0];
@@ -65,47 +56,6 @@ const MyProfile = () => {
 					type: "UPDATE_ACCOUNT",
 					payload: { account: data.body.account },
 				});
-		}
-	};
-
-	const addProject = async (event) => {
-		event.preventDefault();
-		console.log(account);
-		const data = await reqPut(urls.updateAccount + account._id, {
-			account: {
-				...account,
-				details: {
-					...account.details,
-					projects: [...account.details.projects, project],
-				},
-			},
-		});
-		if (data.success) {
-			setShowProjects(false);
-			dispatch({
-				type: "UPDATE_ACCOUNT",
-				payload: { account: data.body.account },
-			});
-		}
-	};
-
-	const addSkill = async (event) => {
-		event.preventDefault();
-		const data = await reqPut(urls.updateAccount + account._id, {
-			account: {
-				...account,
-				details: {
-					...account.details,
-					skills: [...account.details.skills, skill],
-				},
-			},
-		});
-		if (data.success) {
-			setShowSkills(false);
-			dispatch({
-				type: "UPDATE_ACCOUNT",
-				payload: { account: data.body.account },
-			});
 		}
 	};
 
@@ -184,106 +134,8 @@ const MyProfile = () => {
 								<h3>Reputation Points</h3>
 								<h1>{account.details.reputationPoints}</h1>
 							</div>
-							<div className={_.projects}>
-								<h3>Projects</h3>
-								<ul>
-									{account.details.projects.map(
-										(proj, index) => {
-											return (
-												<li key={index}>
-													<h4>{proj.title}</h4>
-													<p>{proj.description}</p>
-													<a
-														href={proj.link}
-														target="_blank"
-													>
-														View Project
-													</a>
-												</li>
-											);
-										}
-									)}
-								</ul>
-								<Popup
-									button={<MdAdd />}
-									showPopup={showProjects}
-									setShowPopup={setShowProjects}
-								>
-									<form action="" className={_.projectForm}>
-										<h1>Add a project</h1>
-										<input
-											type="text"
-											placeholder="Project Title"
-											value={project.title}
-											onChange={({ target: { value } }) =>
-												setProject({
-													...project,
-													title: value,
-												})
-											}
-										/>
-										<input
-											type="text"
-											placeholder="Project Link"
-											value={project.link}
-											onChange={({ target: { value } }) =>
-												setProject({
-													...project,
-													link: value,
-												})
-											}
-										/>
-										<textarea
-											placeholder="Project Description (Optional)"
-											value={project.description}
-											onChange={({ target: { value } }) =>
-												setProject({
-													...project,
-													description: value,
-												})
-											}
-										/>
-										<input
-											type="submit"
-											value="Save"
-											className={templates.btn}
-											onClick={addProject}
-										/>
-									</form>
-								</Popup>
-							</div>
-							<div className={_.skills}>
-								<h3>Skills</h3>
-								<ul>
-									{account.details.skills.map(
-										(skl, index) => (
-											<li key={index}>{skl}</li>
-										)
-									)}
-								</ul>
-								<Popup
-									button={<MdAdd />}
-									showPopup={showSkills}
-									setShowPopup={setShowSkills}
-								>
-									<form className={_.skillsForm}>
-										<h1>Add a skill</h1>
-										<input
-											type="text"
-											placeholder="Skill"
-											value={skill}
-											onChange={({ target: { value } }) =>
-												setSkill(value)
-											}
-										/>
-										<input
-											type="submit"
-											value="Save"
-											onClick={addSkill}
-										/>
-									</form>
-								</Popup>
-							</div>
+							<Projects />
+							<Skills />
 							<div className={_.resume}>
 								<h3>Resume</h3>
 								{account.details.resume && (

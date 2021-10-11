@@ -40,11 +40,6 @@ const Footer = () => {
                     </ul>
                 </div>
             </div>
-            {/* <form className={_.contactUs}>
-                <h4> Contact Us </h4>
-                <textarea placeholder="Leave a message" />
-                <input type="submit" name="Submit" value="Send" />
-            </form> */}
             <div className={_.signature}>
                 <p>
                     Handcrafted with{" "}

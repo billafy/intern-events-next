@@ -22,16 +22,8 @@
         li {
             padding: 0px 0.5rem;
             a {
-                transition: all 0.3s ease;
-                text-decoration: none;
-                color: $text;
+                @include link1;
                 padding: 0.75rem;
-                outline: none;
-                border: none;
-                border-radius: 30px;
-                &:hover {
-                    color: $buttonHover;
-                }
             }
             span {
                 position: absolute;
@@ -68,12 +60,7 @@
         justify-self: right;
         padding: 1rem;
         a {
-            text-decoration: none;
-            color: $text;
-            font-size: 0.9rem;
-            &:hover {
-                color: $link;
-            }
+            @include link2;
         }
         .profilePicture {
             width: 50px;
