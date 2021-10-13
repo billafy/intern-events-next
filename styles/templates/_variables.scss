@@ -51,3 +51,23 @@
         color: $link;
     }
 }
+@mixin formBorder {
+    border: 2px solid $secondary;
+    border-radius: 2rem 0px 2rem 0px;
+}
+@mixin flexB($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+@mixin flexH($direction) {
+    display: flex;
+    justify-content: center;
+    flex-direction: $direction;
+}
+@mixin flexV($direction) {
+    display: flex;
+    align-items: center;
+    flex-direction: $direction;
+}

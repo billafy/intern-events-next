@@ -2,17 +2,14 @@
 @import "./templates/_variables.scss";
 
 .formContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flexB(row);
     .form {
         padding: 3rem 3rem;
         background: $primary;
         width: 400px;
         max-width: 90%;
-        border-radius: 30px 0px 30px 0px;
-        border: solid $button;
         text-align: center;
+        @include formBorder;
         h2 {
             color: $text;
             font-size: 2rem;
@@ -34,8 +31,7 @@
         }
 
         .field {
-            display: flex;
-            align-items: center;
+            @include flexV(row);
             margin-bottom: 2rem;
             input,
             select {

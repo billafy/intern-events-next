@@ -1,9 +1,8 @@
 @import "./templates/_colors.scss";
+@import "./templates/_variables.scss";
 
 .loadingContainer {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	@include flexB(row);
 	height: 100vh;
 	.loading {
 		display: block;

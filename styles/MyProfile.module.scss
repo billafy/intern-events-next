@@ -44,9 +44,8 @@
 				cursor: pointer;
 			}
 			.uploadProfilePicture {
+				@include flexB(row);
 				opacity: 0;
-				display: flex;
-				justify-content: center;
 				position: relative;
 				top: -35px;
 			}
@@ -66,8 +65,7 @@
 			align-items: flex-start;
 			justify-self: left;
 			h1 {
-				display: flex;
-				align-items: center;
+				@include flexV(row);
 				svg {
 					font-size: 1.8rem;
 					margin-left: 0.5rem;
@@ -119,6 +117,21 @@
 				padding-left: 1.5rem;
 				li {
 					list-style-type: disc;
+					h4 {
+						@include flexV(row);
+						> * {
+							visibility: hidden;
+							margin-left: 0.5rem;
+							&:hover {
+								color: $secondary;
+							}
+						}
+						&:hover {
+							> * {
+								visibility: visible;
+							}
+						}
+					}
 					p,
 					a {
 						font-size: 0.9rem;
