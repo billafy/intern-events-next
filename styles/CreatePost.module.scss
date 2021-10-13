@@ -1,0 +1,46 @@
+@import './templates/_colors.scss';
+@import './templates/_variables.scss';
+
+.createPost {
+	@include flexV(column);
+	color: $text;
+	form {
+		@include flexB(column);
+		border: 1px solid $border;
+		width: 600px;
+		max-width: 90%;
+		padding: 1rem;
+		box-shadow: $shadow-l;
+		> * {
+			margin-bottom: 1rem;
+		}
+		textarea {
+			height: 200px;
+			width: 100%;
+			background: transparent;
+			border: 0px;
+			color: $text;
+			font-size: 1rem;
+		}
+		.postImage {
+			@include flexB(row);
+			label {
+				font-size: 2.5rem;
+				position: relative;
+				width: 50px;
+				left: calc(50% - 25px);
+			}
+			input {
+				width: 76px;
+				position: relative;
+				z-index: 1;
+				left: calc(-25%);
+				opacity: 0;
+				cursor: pointer;
+			}
+		}
+		input[type='submit'] {
+			@include button;
+		}
+	}
+}

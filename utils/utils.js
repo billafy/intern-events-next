@@ -7,3 +7,7 @@ export const getImage = (imageName) => {
 export const getResume = (resumeName) => {
 	return `${process.env.NEXT_PUBLIC_API}resumes/${resumeName}`
 }
+
+export const getPost = (postName) => {
+	return `${process.env.NEXT_PUBLIC_API}posts/${postName}`
+}

@@ -9,7 +9,9 @@ const urls = {
 	logout: domain + "accounts/logout/",
 	uploadProfilePicture: domain + 'accounts/uploadProfilePicture/',
 	uploadResume: domain + 'accounts/uploadResume/',
-	updateAccount: domain + 'accounts/updateAccount/'
+	updateAccount: domain + 'accounts/updateAccount/',
+	createPost: domain + 'social/createPost/',
+	getPosts: domain + 'social/getPosts/',
 };
 
 export default urls;

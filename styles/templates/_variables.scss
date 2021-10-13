@@ -1,12 +1,14 @@
 @import "_colors";
 
+$shadow-l: 5px 5px 10px black;
+$shadow-s: 2px 2px 3px black;
 @mixin button {
     height: 35px;
     width: 120px;
     max-width: 90%;
     background: $button;
     color: $text;
-    font-weight: bold;
+    font-weight: normal;
     outline: none;
     border: none;
     font-size: 1rem;
@@ -14,7 +16,8 @@
     padding: 0.5rem 0.5rem;
     transition: 0.1s all ease;
     text-decoration: none;
-    &:focus {
+    box-shadow: $shadow-s;
+    &:hover {
         background: $buttonHover;
     }
 }
@@ -39,6 +42,7 @@
     font-weight: 300;
     transition: all 0.3s ease 0s;
     cursor: pointer;
+    font-weight: normal;
     &:hover {
         color: $buttonHover;
     }

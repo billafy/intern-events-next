@@ -56,7 +56,7 @@ const Main = ({ Component, pageProps }) => {
         <>
             <Head>
                 <meta charSet="utf-8" />
-                <link rel="icon" href="/asd.png" />
+                {/* <link rel="icon" href="/logo.png" /> */}
                 <link rel="apple-touch-icon" href="/favicon.ico" />
                 <meta
                     name="viewport"
@@ -74,7 +74,7 @@ const Main = ({ Component, pageProps }) => {
                     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
                 />
                 <meta name="" content="" />
-                <title>InternEvents</title>
+                <title>Intern.ly</title>
             </Head>
             <Header />
             <main className="main-container">

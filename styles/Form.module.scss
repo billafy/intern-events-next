@@ -9,6 +9,7 @@
         width: 400px;
         max-width: 90%;
         text-align: center;
+        box-shadow: $shadow-l;
         @include formBorder;
         h2 {
             color: $text;

@@ -11,15 +11,16 @@ const LandingPage = () => {
         <div className={_.landingPage}>
             <section className={_.hero}>
                 <div className={_.heroContent}>
-                    <h1>Welcome To Internmania</h1>
+                    <h1>Welcome To Intern.ly</h1>
                     <p>
-                        Lorem, ipsum, dolor sit amet consectetur adipisicing
-                        elit. Doloribus quaerat, exercitationem sunt consectetur
-                        ad deleniti commodi possimus laboriosam minima omnis qui
-                        ipsa assumenda, aspernatur earum dolorem aliquam. Ut
-                        perferendis, sed.
+                        Searching for a platform that would update you about all
+                        events occurring in your choice of top institutions?
+                        then you are at the right place. Intern.ly will update
+                        you about internships, workshops, fests, competitions
+                        and more such events. So, what are you waiting for,
+                        let's begin.
                     </p>
-                    <Link href="/auth/signup">Get Started</Link>
+                    <Link href="/auth/signup">Let's Begin</Link>
                 </div>
                 <div className={_.heroImage}>
                     <img

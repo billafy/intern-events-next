@@ -37,7 +37,7 @@ const Form = ({ title, inputFields, submitButton, link, dropDown }) => {
 	return (
 		<div className={_.formContainer}>
 			<Head>
-				<title>InternEvents - {title}</title>
+				<title>Intern.ly - {title}</title>
 			</Head>
 			<form className={_.form}>
 				<h2>{title}</h2>
