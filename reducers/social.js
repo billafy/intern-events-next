@@ -5,7 +5,7 @@ const initialState = {
 const socialReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case "UPDATE_POSTS": 
-			return state;
+			return {posts: action.payload.posts};
 		default:
 			return state;
 	}

@@ -17,6 +17,9 @@ export const initialState = {
         account: {},
         width: 0,
     },
+    social: {
+        posts: [],
+    }
 };
 
 function initStore(preloadedState = initialState) {

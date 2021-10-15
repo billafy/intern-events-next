@@ -34,7 +34,7 @@ const Header = () => {
             <div className={_.logo}>
                 <Link href="/">
                     <img
-                        src="https://www.freepnglogos.com/uploads/w-letter-logo-png/w-letter-vector-ribbon-alphabet-logo-download-alphabet-logos-33.png"
+                        src="/logo.png"
                         alt="Logo"
                     />
                 </Link>
