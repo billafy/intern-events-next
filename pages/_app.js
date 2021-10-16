@@ -56,7 +56,6 @@ const Main = ({ Component, pageProps }) => {
         <>
             <Head>
                 <meta charSet="utf-8" />
-                {/* <link rel="icon" href="/logo.png" /> */}
                 <link rel="apple-touch-icon" href="/favicon.ico" />
                 <meta
                     name="viewport"
