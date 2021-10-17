@@ -20,40 +20,6 @@
 		> * &:last-child {
 			border: 0px;
 		}
-		li {
-			padding: 1rem;
-			.postProfile {
-				@include flexV(row);
-				img {
-					border: 1px solid $text;
-					width: 50px;
-					height: 50px;
-					object-fit: cover;
-					border-radius: 50%;
-				}
-				p {
-					margin-left: 1rem;
-				}
-			}
-			.postContent {
-
-			}
-			.postMedia {
-				width: 100%;
-			}
-			.postDateTime {
-				font-size: 0.7rem;
-				margin: 0.3rem 0px;
-				text-align: right;
-			}
-			.postButtons {
-				font-size: 2rem;
-				margin: 0.5rem 0px;
-				> * {
-					margin-right: 0.5rem;
-				}
-			}
-		}
 		.emptyTimeline {
 			border: 0px;
 			text-align: center;

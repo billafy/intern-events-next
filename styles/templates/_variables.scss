@@ -75,3 +75,10 @@ $shadow-s: 2px 2px 3px black;
     align-items: center;
     flex-direction: $direction;
 }
+@mixin profilePicture($size) {
+    border: 1px solid $text;
+    width: $size;
+    height: $size;
+    object-fit: cover;
+    border-radius: 50%;
+}

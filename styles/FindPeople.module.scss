@@ -1,0 +1,59 @@
+@import './templates/_colors.scss';
+@import './templates/_variables.scss';
+
+.findPeople {
+	h1 {
+		text-align: center;
+		color: $text;
+	}
+	form {
+		@include flexB(row);
+		width: 300px;
+		max-width: 90%;
+		margin: auto;
+		box-shadow: $shadow-s;
+		input {
+			width: calc(100% - 35px);
+			height: 35px;
+			background: transparent;
+			border: 0px solid $secondary;
+			border-bottom-width: 2px;
+			padding: 0px 0.5rem;
+			color: $text;
+		}
+		button {
+			color: $text;
+			height: 35px;
+			width: 35px;
+			background: $secondary;
+			border: 0px;
+			font-size: 1rem;
+		}
+	}
+	.noResults {
+		text-align: center;
+		color: $text;
+		margin: 3rem 0px;
+	}
+	.results {
+		width: 500px;
+		max-width: 95%;
+		padding: 0px;
+		margin: 1.5rem auto;
+		box-shadow: $shadow-l;
+		li {
+			@include flexV(row);
+			padding: 1rem;
+			color: $text;
+			border: 1px solid $secondary;
+			border-bottom-width: 0px;
+			&:last-child {
+				border-bottom-width: 1px;
+			}
+			img {
+				@include profilePicture(100px);
+				margin-right: 1rem;
+			}
+		}
+	}
+}

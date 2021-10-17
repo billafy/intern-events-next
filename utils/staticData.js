@@ -45,7 +45,7 @@ export const navLinks = [
 			},
 			{
 				text: 'Find People',
-				href: '/social/searchAccounts',
+				href: '/social/findPeople',
 			},
 			{
 				text: "Create a Post",

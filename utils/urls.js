@@ -10,6 +10,7 @@ const urls = {
 	uploadProfilePicture: domain + 'accounts/uploadProfilePicture/',
 	uploadResume: domain + 'accounts/uploadResume/',
 	updateAccount: domain + 'accounts/updateAccount/',
+	searchAccounts: domain + 'accounts/searchAccounts/',
 	createPost: domain + 'social/createPost/',
 	getTimeline: domain + 'social/getTimeline/',
 	likePost: domain + 'social/likePost/'

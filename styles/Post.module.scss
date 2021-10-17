@@ -1,0 +1,41 @@
+@import "./templates/_colors.scss";
+@import "./templates/_variables.scss";
+
+.post {
+	padding: 1rem;
+	.postProfile {
+		@include flexV(row);
+		img {
+			@include profilePicture(50px);
+		}
+		p {
+			margin-left: 1rem;
+		}
+	}
+	.postContent {
+	}
+	.postMedia {
+		width: 100%;
+	}
+	.postDateTime {
+		font-size: 0.7rem;
+		margin: 0.3rem 0px;
+		text-align: right;
+	}
+	.postButtons {
+		margin: 0.5rem 0px;
+		@include flexV(row);
+		> * {
+			@include flexV(column);
+			margin-left: 0.5rem;
+			svg {
+				font-size: 2rem;
+				margin-bottom: 0.5rem;
+			}
+			p {
+				margin: 0px;
+				font-size: 1rem;
+			}
+		}
+	}
+}
