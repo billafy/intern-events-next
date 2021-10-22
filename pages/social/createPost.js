@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import urls from "../../utils/urls";
 import {FcAddImage} from 'react-icons/fc'
-import _ from "../../styles/CreatePost.module.scss";
+import _ from "../../styles/social/CreatePost.module.scss";
 import {useRouter} from 'next/router'
 
 const CreatePost = () => {

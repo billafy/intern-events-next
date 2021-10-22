@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { reqGet } from "../../utils/customRequests";
 import urls from "../../utils/urls";
-import _ from "../../styles/Timeline.module.scss";
+import _ from "../../styles/social/Timeline.module.scss";
 import Link from "next/link";
 import Post from "../../components/Social/Post";
 import {useRouter} from 'next/router'

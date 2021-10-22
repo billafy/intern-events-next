@@ -1,5 +1,5 @@
 import React from "react";
-import _ from "../../styles/Post.module.scss";
+import _ from "../../styles/social/Post.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { getPost, getImage } from "../../utils/utils";
 import { AiFillHeart, AiOutlineHeart, AiOutlineComment } from "react-icons/ai";
@@ -14,7 +14,7 @@ const Post = ({ post }) => {
 	} = useSelector((state) => state);
 
 	const likePost = async (_id) => {
-		const data = await reqPut(`${urls.likePost}${_id}/${account._id}`);
+		const data = await reqPut(urls.likePost + _id);
 		if (data.success) {
 			const newPosts = posts.map((post) => {
 				if (post._id === _id) return data.body.post;

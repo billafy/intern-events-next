@@ -7,8 +7,8 @@ import { GiMale, GiFemale } from "react-icons/gi";
 import { reqPost } from "../utils/customRequests";
 import { BiImageAdd } from "react-icons/bi";
 import _ from "../styles/MyProfile.module.scss";
-import Projects from "../components/MyProfile/Projects";
-import Skills from "../components/MyProfile/Skills";
+import Projects from "../components/Profile/Projects";
+import Skills from "../components/Profile/Skills";
 
 const MyProfile = () => {
 	const router = useRouter();

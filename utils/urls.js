@@ -11,9 +11,12 @@ const urls = {
 	uploadResume: domain + 'accounts/uploadResume/',
 	updateAccount: domain + 'accounts/updateAccount/',
 	searchAccounts: domain + 'accounts/searchAccounts/',
+	getAccountIds: domain + 'accounts/getAccountIds',
+	getAccount: domain + 'accounts/getAccount/',
 	createPost: domain + 'social/createPost/',
 	getTimeline: domain + 'social/getTimeline/',
-	likePost: domain + 'social/likePost/'
+	likePost: domain + 'social/likePost/',
+	followAccount: domain + 'social/followAccount/'
 };
 
 export default urls;

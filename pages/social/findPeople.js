@@ -1,53 +1,68 @@
-import {useState} from 'react';
-import {AiOutlineSearch} from 'react-icons/ai'
-import _ from '../../styles/FindPeople.module.scss'
-import {reqGet} from '../../utils/customRequests'
-import urls from '../../utils/urls'
-import {getImage} from '../../utils/utils'
+import { useState } from "react";
+import { AiOutlineSearch } from "react-icons/ai";
+import _ from "../../styles/social/FindPeople.module.scss";
+import { reqGet } from "../../utils/customRequests";
+import urls from "../../utils/urls";
+import { getImage } from "../../utils/utils";
+import { useSelector } from "react-redux";
+import Link from 'next/link'
+import {AiFillCaretRight} from 'react-icons/ai'
 
 const FindPeople = () => {
-    const [keyword, setKeyword] = useState('')
-    const [results, setResults] = useState([])
-    const [noResults, setNoResults] = useState(false)
+    const {
+        auth: { account },
+    } = useSelector((state) => state);
+    const [keyword, setKeyword] = useState("");
+    const [results, setResults] = useState([]);
+    const [error, setError] = useState("");
 
     const searchAccounts = async (event) => {
-        event.preventDefault()
-        if(keyword.length >= 3) {
-            const data = await reqGet(urls.searchAccounts + keyword)
-            if(data.body.results.length > 0) {
-                setResults(data.body.results)
-                setNoResults(false)
+        event.preventDefault();
+        if (keyword.length >= 3) {
+            const data = await reqGet(urls.searchAccounts + keyword);
+            if (data.body.results.length > 0) {
+                setResults(data.body.results);
+                setError("");
+            } else {
+                setResults([]);
+                setError("No results found");
             }
-            else {
-                setResults([])
-                setNoResults(true)
-            }
-        } 
-    }
+        } else setError("Enter atleast 3 characters");
+    };
 
     return (
         <div className={_.findPeople}>
             <h1>Find People</h1>
             <form>
-                <input type='text' placeholder='Search...' onChange={({target: {value}}) => setKeyword(value)}/>
-                <button onClick={searchAccounts}><AiOutlineSearch/></button>
+                <input
+                    type="text"
+                    placeholder="Search..."
+                    onChange={({ target: { value } }) => setKeyword(value)}
+                />
+                <button onClick={searchAccounts}>
+                    <AiOutlineSearch />
+                </button>
             </form>
-            {noResults
-                ?
-                <p className={_.noResults}>No results found</p>
-                :
+            {error ? (
+                <p className={_.error}>{error}</p>
+            ) : (
                 <ul className={_.results}>
-                    {results.map(result => {
-                        return (<li key={result._id}>
-                            <img src={getImage(result.profilePicture)}/>
-                            <p>
-                                {result.details.name || `${result.details.firstName} ${result.details.lastName}`}
-                            </p>
-                        </li>)
-                    })
-                    }
+                    {results.map((result) => {
+                        return (
+                            <li key={result._id}>
+                                <img src={getImage(result.profilePicture)} />
+                                <p>
+                                    {result.details.name ||
+                                        `${result.details.firstName} ${result.details.lastName}`}
+                                </p>
+                                <Link href={account._id !== result._id ? `/social/profile/${result._id}` : '/myProfile'}>
+                                    See
+                                </Link>
+                            </li>
+                        );
+                    })}
                 </ul>
-            }
+            )}
         </div>
     );
 };

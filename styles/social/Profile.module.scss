@@ -1,0 +1,103 @@
+@import '../templates/_colors.scss';
+@import '../templates/_variables.scss';
+
+.profile {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	color: $text;
+	grid-column-gap: 5rem;
+	grid-row-gap: 3rem;
+	width: 900px;
+	max-width: 95%;
+	margin: auto;
+	> h1 {
+		grid-column: 1/3;
+		text-align: center;
+	}
+	.profileDetails {
+		display: flex;
+		flex-direction: column;
+		justify-self: right;
+		img {
+			@include profilePicture(150px);
+		}
+		h1 {
+			@include flexV(row);
+			svg {
+				font-size: 1.8rem;
+				margin-left: 0.5rem;
+			}
+		}
+		h1,
+		p {
+			margin: 1rem 0px 0px 0px;
+		}
+		.followButton {
+			@include button;
+			margin: 1rem 0px;
+		}
+		.followCount {
+			display: flex;
+			margin-bottom: 1rem;
+			div {
+				display: grid;
+				margin-right: 1rem;
+				p {
+					text-align: center;
+					margin: 0.5rem 0px;
+				}
+			}
+		}
+		.description {
+			font-size: 0.9rem;
+			span {
+				color: $secondary;
+			}
+		}
+	}
+	.profileInfo {
+		display: flex;
+		flex-direction: column;
+		border: 1px solid $border;
+		box-shadow: $shadow-l;
+		h3 {
+			text-transform: uppercase;
+		}
+		> div {
+			padding: 1rem;
+			display: flex;
+			flex-direction: column;
+			justify-items: flex-end;
+			border-bottom: 1px solid $border;
+		}
+		.reputationPoints {
+			@include flexH(column);
+		}
+		.projects,
+		.skills {
+			ul {
+				margin: 0px 0px 1rem 0px;
+				padding-left: 1.5rem;
+				li {
+					list-style-type: disc;
+					p,
+					a {
+						font-size: 0.9rem;
+					}
+					a {
+						color: $text;
+						&:hover {
+							color: $link;
+						}
+					}
+				}
+			}
+		}
+		.resume {
+			a {
+				@include link2;
+				margin-bottom: 1rem;
+			}
+		}
+	}
+}

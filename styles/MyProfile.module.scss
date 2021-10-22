@@ -197,6 +197,12 @@
 			justify-self: center;
 			grid-column: 1/3;
 		}
+		.profileDetails {
+			@include flexB(column);
+			.profileMain {
+				@include flexB(column);
+			}
+		}
 		.profileInfo {
 			width: 100%;
 		}
