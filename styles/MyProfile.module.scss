@@ -90,10 +90,41 @@
 		.description {
 			font-size: 0.9rem;
 			span {
+				@include flexV(row);
 				color: $secondary;
+				svg {
+					color: $text;
+					visibility: hidden;
+					margin-left: 0.5rem;
+					&:hover {
+						color: $secondary;
+					}
+				}
+				form {
+					@include flexB(column);
+					> * {
+						margin-bottom: 1rem;
+					}
+					h3 {
+						color: $text;
+					}
+					textarea {
+						@include textField;
+						height: 75px;
+					}
+					input[type='button'] {
+						@include button;
+					}
+				}
+				&:hover {
+					svg {
+						visibility: visible;
+					}
+				}
 			}
-			p {
-			}
+		}
+		a {
+			@include link1;
 		}
 	}
 	.profileInfo {

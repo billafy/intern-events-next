@@ -46,17 +46,14 @@ const FindPeople = () => {
             {error ? (
                 <p className={_.error}>{error}</p>
             ) : (
-                <ul className={_.results}>
+                <ul className={_.results} style={results.length === 1 ? {gridTemplateColumns: '1fr', width: '500px'} : {}}>
                     {results.map((result) => {
                         return (
                             <li key={result._id}>
                                 <img src={getImage(result.profilePicture)} />
-                                <p>
+                                <Link href={account._id !== result._id ? `/social/profile/${result._id}` : '/myProfile'}>
                                     {result.details.name ||
                                         `${result.details.firstName} ${result.details.lastName}`}
-                                </p>
-                                <Link href={account._id !== result._id ? `/social/profile/${result._id}` : '/myProfile'}>
-                                    See
                                 </Link>
                             </li>
                         );

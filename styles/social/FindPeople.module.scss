@@ -1,5 +1,5 @@
-@import '../templates/_colors.scss';
-@import '../templates/_variables.scss';
+@import "../templates/_colors.scss";
+@import "../templates/_variables.scss";
 
 .findPeople {
 	h1 {
@@ -36,32 +36,34 @@
 		margin: 3rem 0px;
 	}
 	.results {
-		width: 500px;
+		width: 900px;
 		max-width: 95%;
 		padding: 0px;
 		margin: 1.5rem auto;
-		box-shadow: $shadow-l;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: 1rem;
 		li {
 			@include flexV(row);
 			padding: 1rem;
 			color: $text;
 			border: 1px solid $secondary;
-			border-bottom-width: 0px;
-			&:last-child {
-				border-bottom-width: 1px;
-			}
+			box-shadow: $shadow-s;
 			img {
 				@include profilePicture(100px);
 				margin-right: 1rem;
 			}
-			svg {
-				margin-left: auto;
-				font-size: 2rem;
-				transition: all 0.3s ease;
-				&:hover {
-					color: $secondary;
-				}
+			a {
+				@include link1;
 			}
+			&:hover {
+				box-shadow: $shadow-l;
+			}
+		}
+	}
+	@media (min-width: 0px) and (max-width: 668px) {
+		.results {
+			grid-template-columns: 1fr;
 		}
 	}
 }

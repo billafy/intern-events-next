@@ -5,6 +5,7 @@ import _ from "../../../styles/social/Profile.module.scss";
 import { GiMale, GiFemale } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
 import {reqPut} from '../../../utils/customRequests'
+import Link from 'next/link'
 
 const Profile = ({ propProfile }) => {
 	const [profile, setProfile] = useState(propProfile)
@@ -71,6 +72,7 @@ const Profile = ({ propProfile }) => {
 					<span>DESCRIPTION</span>
 					<p>{profile.description}</p>
 				</div>
+				<Link href={`/social/posts/${profile._id}`}>See Posts</Link>
 			</div>
 			<div className={_.profileInfo}>
 				<div className={_.reputationPoints}>

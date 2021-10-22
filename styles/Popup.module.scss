@@ -2,6 +2,12 @@
 @import "./templates/_variables.scss";
 
 .popupContainer {
+	.showPopup {
+		color: $text;
+		background: transparent;
+		border: 0px;
+		font-size: 1rem;
+	}
 	.popup {
 		background: $background;
 		width: 300px;

@@ -50,9 +50,13 @@
 		}
 		.description {
 			font-size: 0.9rem;
+			margin-bottom: 1rem;
 			span {
 				color: $secondary;
 			}
+		}
+		a {
+			@include link1;
 		}
 	}
 	.profileInfo {
@@ -98,6 +102,20 @@
 				@include link2;
 				margin-bottom: 1rem;
 			}
+		}
+	}
+	@media (min-width: 0px) and (max-width: 568px) {
+		grid-template-columns: 1fr;
+		grid-column-gap: 0px;
+		.profileDetails, .profileInfo {
+			justify-self: center;
+			grid-column: 1/3;
+		}
+		.profileDetails {
+			@include flexB(column);
+		}
+		.profileInfo {
+			width: 100%;
 		}
 	}
 }

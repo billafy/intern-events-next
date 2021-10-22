@@ -16,7 +16,8 @@ const urls = {
 	createPost: domain + 'social/createPost/',
 	getTimeline: domain + 'social/getTimeline/',
 	likePost: domain + 'social/likePost/',
-	followAccount: domain + 'social/followAccount/'
+	followAccount: domain + 'social/followAccount/',
+	getPosts: domain + 'social/getPosts/',
 };
 
 export default urls;

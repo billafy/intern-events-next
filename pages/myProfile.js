@@ -4,11 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getImage, getResume } from "../utils/utils";
 import urls from "../utils/urls";
 import { GiMale, GiFemale } from "react-icons/gi";
-import { reqPost } from "../utils/customRequests";
+import { reqPut } from "../utils/customRequests";
 import { BiImageAdd } from "react-icons/bi";
 import _ from "../styles/MyProfile.module.scss";
 import Projects from "../components/Profile/Projects";
 import Skills from "../components/Profile/Skills";
+import { MdEdit } from "react-icons/md";
+import Popup from "../components/Popup";
+import Link from 'next/link'
 
 const MyProfile = () => {
 	const router = useRouter();
@@ -17,47 +20,50 @@ const MyProfile = () => {
 	} = useSelector((state) => state);
 	const dispatch = useDispatch();
 	const newProfilePicture = useState("");
+	const [showDescription, setShowDescription] = useState(false);
+	const [description, setDescription] = useState(account.description);
 
-	const uploadProfilePicture = async (event) => {
+	const updateAccount = async (url, formData) => {
+		const response = await fetch(url + account._id, {
+			method: "PUT",
+			body: formData,
+			credentials: "include",
+		});
+		const data = await response.json();
+		if (data.success)
+			dispatch({
+				type: "UPDATE_ACCOUNT",
+				payload: { account: data.body.account },
+			});
+	};
+
+	const uploadProfilePicture = (event) => {
 		const profilePicture = event.target.files[0];
 		if (profilePicture && profilePicture.type.startsWith("image/")) {
 			const formData = new FormData();
 			formData.append("profilePicture", profilePicture);
-			const response = await fetch(
-				urls.uploadProfilePicture + account._id,
-				{
-					method: "POST",
-					body: formData,
-					credentials: "include",
-				}
-			);
-			const data = await response.json();
-			if (data.success)
-				dispatch({
-					type: "UPDATE_ACCOUNT",
-					payload: { account: data.body.account },
-				});
+			updateAccount(urls.uploadProfilePicture, formData);
 		}
 	};
 
-	const uploadResume = async (event) => {
+	const uploadResume = (event) => {
 		const resume = event.target.files[0];
 		if (resume && resume.type === "application/pdf") {
 			const formData = new FormData();
 			formData.append("resume", resume);
-			const response = await fetch(urls.uploadResume + account._id, {
-				method: "POST",
-				body: formData,
-				credentials: "include",
-			});
-			const data = await response.json();
-			if (data.success)
-				dispatch({
-					type: "UPDATE_ACCOUNT",
-					payload: { account: data.body.account },
-				});
+			updateAccount(urls.uploadResume, formData);
 		}
 	};
+
+	const updateDescription = async () => {
+		const data = await reqPut(urls.updateAccount + account._id, {
+			account: {...account, description: description}
+		})
+		if(data.success) 
+			dispatch({type: 'UPDATE_ACCOUNT', payload: {account: data.body.account}})
+		setShowDescription(false)
+
+	}
 
 	useEffect(() => {
 		if (!isLoggedIn) router.replace("/");
@@ -123,9 +129,23 @@ const MyProfile = () => {
 						</div>
 					</div>
 					<div className={_.description}>
-						<span>DESCRIPTION</span>
+						<span>
+							DESCRIPTION
+							<Popup
+								button={<MdEdit />}
+								showPopup={showDescription}
+								setShowPopup={setShowDescription}
+							>
+								<form>
+									<h3>Update Description</h3>
+									<textarea placeholder="Enter about yourself" value={description} onChange={({target: {value}}) => setDescription(value)}/>
+									<input type="button" value="Save" onClick={updateDescription}/>
+								</form>
+							</Popup>
+						</span>
 						<p>{account.description}</p>
 					</div>
+					<Link href={`/social/posts/${account._id}`}>See Posts</Link>
 				</section>
 				<section className={_.profileInfo}>
 					{account.accountType === "student" ? (
