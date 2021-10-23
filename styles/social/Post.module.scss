@@ -8,11 +8,10 @@
 		img {
 			@include profilePicture(50px);
 		}
-		p {
+		a {
+			@include link1;
 			margin-left: 1rem;
 		}
-	}
-	.postContent {
 	}
 	.postMedia {
 		width: 100%;
@@ -35,6 +34,51 @@
 			p {
 				margin: 0px;
 				font-size: 1rem;
+			}
+		}
+	}
+	.comments {
+		margin: 2rem 0px;
+		form {
+			@include flexB(row);
+			textarea {
+				@include textField;
+				width: 90%;
+				height: 35px;
+				margin: 0px;
+				border-color: $secondary;
+			}
+			input {
+				@include button;
+				width: 10%;
+				border-radius: 0px;
+				height: 35px;
+			}
+		}
+		h5 {
+			margin-bottom: 0px;
+		}
+		ul {
+			display: flex;
+			flex-direction: column;
+			margin: 0.5rem 0px;
+			padding: 0px;
+			height: auto;
+			max-height: 200px;
+			overflow-y: auto;
+			.comment {
+				@include flexV(row);
+				a {
+					@include link1;
+					font-weight: bold;
+					margin-right: 0.5rem;	
+				}
+				strong {
+					font-size: 1.1rem;
+				}
+				p {
+					font-size: 1rem;
+				}
 			}
 		}
 	}

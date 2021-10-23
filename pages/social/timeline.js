@@ -17,6 +17,7 @@ const Timeline = () => {
 
 	const getTimeline = async () => {
 		const data = await reqGet(urls.getTimeline + account._id);
+		console.log(data.body.posts)
 		if (data.success)
 			dispatch({
 				type: "UPDATE_POSTS",

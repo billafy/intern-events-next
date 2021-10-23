@@ -21,11 +21,14 @@
 			border: 0px;
 		}
 		.emptyTimeline {
+			@include flexB(column);	
 			border: 0px;
 			text-align: center;
 			height: 100px;
 			a {
 				@include button;
+				width: auto;
+				margin-bottom: 1rem;
 			}
 		}
 	}

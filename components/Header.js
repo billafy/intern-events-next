@@ -18,8 +18,8 @@ const Header = () => {
 
     const logout = async () => {
         const data = await reqDelete(urls.logout + account._id);
-        router.replace('/');
         if (data.success) {
+            router.replace('/');
             setShowDropDown(false);
             dispatch({ type: "LOGOUT" });
         }

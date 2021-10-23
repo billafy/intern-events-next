@@ -10,7 +10,7 @@
 	}
 	.popup {
 		background: $background;
-		width: 300px;
+		min-width: 300px;
 		max-width: 90%;
 		max-height: 90vh;
 		overflow-y: auto;
