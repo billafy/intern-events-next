@@ -19,6 +19,8 @@ const urls = {
 	followAccount: domain + 'social/followAccount/',
 	getPosts: domain + 'social/getPosts/',
 	commentPost: domain + 'social/commentPost/',
+	deleteComment : domain + 'social/deleteComment/',
+	deletePost: domain + 'social/deletePost/',
 };
 
 export default urls;

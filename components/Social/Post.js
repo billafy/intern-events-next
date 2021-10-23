@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import _ from "../../styles/social/Post.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { getPost, getImage } from "../../utils/utils";
 import { AiFillHeart, AiOutlineHeart, AiOutlineComment } from "react-icons/ai";
 import urls from "../../utils/urls";
-import { reqPut } from "../../utils/customRequests";
+import { reqDelete, reqPut } from "../../utils/customRequests";
 import Link from "next/link";
 import Popup from "../Popup";
+import {FaTrash} from 'react-icons/fa'
 
 const Post = ({ post }) => {
 	const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const Post = ({ post }) => {
 	} = useSelector((state) => state);
 	const [showComments, setShowComments] = useState(false);
 	const [comment, setComment] = useState("");
+	const commentsRef = useRef(null);
 
 	const updatePosts = (newPost) => {
 		const newPosts = posts.map((post) => {
@@ -37,8 +39,26 @@ const Post = ({ post }) => {
 		if (data.success) {
 			updatePosts(data.body.post)
 			setComment('')
+			commentsRef.current.scrollTop = -commentsRef.current.scrollHeight;
 		};
 	};
+
+	const deleteComment = async (postId, commentId) => {
+		const data = await reqDelete(`${urls.deleteComment}${postId}/${commentId}`)
+		if(data.success) {
+			updatePosts(data.body.post)
+			commentsRef.current.scrollTop = -commentsRef.current.scrollHeight;
+		}
+	}
+
+	const deletePost = async (postId) => {
+		const data = await reqDelete(urls.deletePost + postId)
+		console.log(data)
+		if(data.success) {
+			const newPosts = posts.filter(post => post._id !== postId) 
+			dispatch({type: 'UPDATE_POSTS', payload: {posts: newPosts}})
+		}
+	}
 
 	return (
 		<li key={post._id} className={_.post}>
@@ -52,6 +72,8 @@ const Post = ({ post }) => {
 						? `${post.postedBy.details.firstName} ${post.postedBy.details.lastName}`
 						: post.postedBy.details.name}
 				</Link>
+				{isLoggedIn && account._id === post.postedBy._id &&
+					<FaTrash onClick={() => deletePost(post._id)}/>}
 			</div>
 			<p className={_.postContent}>{post.content}</p>
 			{post.media && (
@@ -98,10 +120,10 @@ const Post = ({ post }) => {
 						/>
 					</form>
 					<h5>Comments</h5>
-					<ul>
+					<ul ref={commentsRef}>
 						{post.comments.map((cmnt) => {
 							return (
-								<li className={_.comment}>
+								<li className={_.comment} key={cmnt._id}>
 									<p>
 										<strong>
 											<Link
@@ -113,6 +135,8 @@ const Post = ({ post }) => {
 										</strong>
 										{cmnt.text}
 									</p>
+									{isLoggedIn && account._id === cmnt.commentedBy._id && 
+										<FaTrash onClick={() => deleteComment(post._id, cmnt._id)}/>}
 								</li>
 							);
 						})}

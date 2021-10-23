@@ -12,6 +12,18 @@
 			@include link1;
 			margin-left: 1rem;
 		}
+		svg {
+			margin-left: auto;
+			visibility: hidden;
+			&:hover {
+				color: $error;
+			}
+		}
+		&:hover {
+			svg {
+				visibility: visible;
+			}
+		}
 	}
 	.postMedia {
 		width: 100%;
@@ -60,7 +72,7 @@
 		}
 		ul {
 			display: flex;
-			flex-direction: column;
+			flex-direction: column-reverse;
 			margin: 0.5rem 0px;
 			padding: 0px;
 			height: auto;
@@ -68,16 +80,27 @@
 			overflow-y: auto;
 			.comment {
 				@include flexV(row);
-				a {
-					@include link1;
-					font-weight: bold;
-					margin-right: 0.5rem;	
-				}
-				strong {
-					font-size: 1.1rem;
-				}
 				p {
-					font-size: 1rem;
+					font-size: 0.95rem;
+					width: 95%;
+					a {
+						@include link1;
+						font-weight: bold;
+						margin-right: 0.5rem;	
+					}
+				}
+				svg {
+					width: 5%;
+					font-size: 0.8rem;
+					visibility: hidden;
+					&:hover {
+						color: $error;
+					}
+				}
+				&:hover {
+					svg {
+						visibility: visible;
+					}
 				}
 			}
 		}
