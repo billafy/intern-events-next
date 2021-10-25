@@ -71,7 +71,7 @@ const MyProfile = () => {
 
 	return (
 		isLoggedIn && (
-			<div className={_.myProfile}>
+			<div className={`${_.myProfile} ${account.accountType === 'student' ? '' : _.collegeCompanyProfile}`}>
 				<h1>My Profile</h1>
 				<section className={_.profileDetails}>
 					<div className={_.profilePicture}>
@@ -114,7 +114,7 @@ const MyProfile = () => {
 								{account.details.university && (
 									<h2>{account.details.university}</h2>
 								)}
-								<h2>{account.details.address}</h2>
+								<h3>{account.details.address}</h3>
 							</>
 						)}
 					</div>

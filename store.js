@@ -4,7 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 import reducer from "./reducers/";
 
-import { defaultInputs } from "./utils/inputFields";
+import { defaultInputs, internshipInputs } from "./utils/inputFields";
 
 let store;
 
@@ -19,6 +19,10 @@ export const initialState = {
     },
     social: {
         posts: [],
+    },
+    internships: {
+        internships: [],
+        internshipInput: internshipInputs,
     }
 };
 

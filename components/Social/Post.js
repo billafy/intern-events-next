@@ -19,25 +19,18 @@ const Post = ({ post }) => {
 	const [comment, setComment] = useState("");
 	const commentsRef = useRef(null);
 
-	const updatePosts = (newPost) => {
-		const newPosts = posts.map((post) => {
-			if (post._id === newPost._id) return newPost;
-			return post;
-		});
-		dispatch({ type: "UPDATE_POSTS", payload: { posts: newPosts } });
-	};
-
 	const likePost = async (_id) => {
 		if (!isLoggedIn) return;
 		const data = await reqPut(urls.likePost + _id);
-		if (data.success) updatePosts(data.body.post);
+		if (data.success) 
+			dispatch({type: 'UPDATE_POST', payload: {post: data.body.post}})
 	};
 
 	const commentPost = async (_id) => {
 		if (!isLoggedIn || !comment) return;
 		const data = await reqPut(urls.commentPost + _id, { text: comment });
 		if (data.success) {
-			updatePosts(data.body.post)
+			dispatch({type: 'UPDATE_POST', payload: {post: data.body.post}})
 			setComment('')
 			commentsRef.current.scrollTop = -commentsRef.current.scrollHeight;
 		};
@@ -46,18 +39,15 @@ const Post = ({ post }) => {
 	const deleteComment = async (postId, commentId) => {
 		const data = await reqDelete(`${urls.deleteComment}${postId}/${commentId}`)
 		if(data.success) {
-			updatePosts(data.body.post)
+			dispatch({type: 'UPDATE_POST', payload: {post: data.body.post}})
 			commentsRef.current.scrollTop = -commentsRef.current.scrollHeight;
 		}
 	}
 
 	const deletePost = async (postId) => {
 		const data = await reqDelete(urls.deletePost + postId)
-		console.log(data)
-		if(data.success) {
-			const newPosts = posts.filter(post => post._id !== postId) 
-			dispatch({type: 'UPDATE_POSTS', payload: {posts: newPosts}})
-		}
+		if(data.success) 
+			dispatch({type: 'DELETE_POST', payload: {postId}})
 	}
 
 	return (

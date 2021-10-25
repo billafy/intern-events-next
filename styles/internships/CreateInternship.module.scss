@@ -1,0 +1,49 @@
+@import '../templates/_colors.scss';
+@import '../templates/_variables.scss';
+
+.createInternship {
+    width: 500px;
+    max-width: 95%;
+    background-color: $primary;
+    margin: auto;
+    padding: 2rem;
+    box-shadow: $shadow-l;
+    h1 {
+        color: $text;
+        text-align: center;
+    }
+    form {
+        width: 100%;
+        color: $text;
+        @include flexH(column);
+        > * {
+            margin-bottom: 0.5rem;
+        }
+        input, textarea, select {
+            @include textField;
+            font-size: 1rem;
+            width: 100%;
+        }
+        textarea {
+            resize: none;
+            height: 150px;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+        }
+        input[type='date'] {
+            text-transform: uppercase;
+        }
+        input[type='submit'] {
+            @include button;
+            margin: auto;
+        }
+        .inputError {
+            text-align: center;
+            color: $error;
+            font-size: 0.9rem;
+        }
+    }
+}

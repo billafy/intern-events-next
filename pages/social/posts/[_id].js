@@ -12,7 +12,7 @@ const Posts = ({ propPosts, propAccount }) => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch({type: 'UPDATE_POSTS', payload: {posts: propPosts}})
+		dispatch({type: 'SET_POSTS', payload: {posts: propPosts}})
 	}, [])
 
 	return (

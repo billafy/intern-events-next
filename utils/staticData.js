@@ -12,12 +12,23 @@ export const navLinks = [
 		href: "/",
 		subLinks: [
 			{
+				text: 'Create Internship',
+				href: '/internships/createInternship',
+				accountType: 'company',
+			},
+			{
+				text: 'Review Internship Applications',
+				href: '/internships/createdInternships',
+				accountType: 'company',
+			},
+			{
 				text: "Search Internships",
 				href: "/",
 			},
 			{
 				text: "Applied Internships",
 				href: "/",
+				accountType: 'student',
 			},
 		],
 	},
@@ -32,6 +43,7 @@ export const navLinks = [
 			{
 				text: "Applied Events",
 				href: "/",
+				accountType: 'student',
 			},
 		],
 	},

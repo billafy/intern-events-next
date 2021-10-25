@@ -14,16 +14,19 @@ const Profile = ({ propProfile }) => {
 	} = useSelector((state) => state);
 	const dispatch = useDispatch()
 
+	console.log(account)
+
 	const followToggle = async () => {
 		const data = await reqPut(urls.followAccount + profile._id)
 		if(data.success) {
+			console.log(data.body.account)
 			setProfile(data.body.followingAccount)
 			dispatch({type: 'UPDATE_ACCOUNT', payload: {account: data.body.account}})
 		}
 	}
 
 	return (
-		<div className={_.profile}>
+		<div className={`${_.profile} ${profile.accountType === 'student' ? '' : _.collegeCompanyProfile}`}>
 			<h1>Profile</h1>
 			<div className={_.profileDetails}>
 				<img src={getImage(profile.profilePicture)} />
@@ -82,7 +85,7 @@ const Profile = ({ propProfile }) => {
 				<div className={_.projects}>
 					<h3>Projects</h3>
 					<ul>
-						{profile.details.projects.map((project) => {
+						{profile.details.projects && profile.details.projects.map((project) => {
 							return (
 								<li key={project._id}>
 									<h4>{project.title}</h4>
@@ -98,7 +101,7 @@ const Profile = ({ propProfile }) => {
 				<div className={_.skills}>
 					<h3>Skills</h3>
 					<ul>
-						{profile.details.skills.map((skill) => {
+						{profile.details.skills && profile.details.skills.map((skill) => {
 							return (
 								<li key={skill._id}>
 									<h4>{skill.title}</h4>

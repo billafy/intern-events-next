@@ -119,3 +119,28 @@
 		}
 	}
 }
+.collegeCompanyProfile {
+	grid-template-columns: 1fr;
+	grid-column-gap: 0px;
+	width: 500px;
+	max-width: 100%;
+	.profileDetails {
+		max-width: 95%;
+		justify-self: center;
+		align-items: center;
+		* {
+			text-align: center;
+		}
+		.profileMain {
+			align-items: center;
+		}
+		.description {
+			span {
+				@include flexB(row);
+			}
+		}
+	}
+	.profileInfo {
+		display: none;
+	}
+}

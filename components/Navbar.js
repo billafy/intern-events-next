@@ -1,8 +1,12 @@
-import React from 'react';
+import {Fragment} from 'react';
 import {navLinks} from '../utils/staticData'
 import Link from 'next/link'
 
+import {useSelector} from 'react-redux'
+
 const Navbar = () => {
+    const {auth: {isLoggedIn, account}} = useSelector(state => state);
+
 	return (
 		<ul>
             {navLinks.map((link) => {
@@ -14,6 +18,8 @@ const Navbar = () => {
                         <span>
                             <ul>
                                 {link.subLinks.map(subLink => {
+                                    if(subLink.accountType && (!isLoggedIn || subLink.accountType !== account.accountType)) 
+                                        return <Fragment key={subLink.text}></Fragment>
                                     return (
                                         <li key={subLink.text}>
                                             <Link href={subLink.href}>{subLink.text}</Link>

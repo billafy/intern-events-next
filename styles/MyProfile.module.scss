@@ -239,3 +239,24 @@
 		}
 	}
 }
+.collegeCompanyProfile {
+	grid-template-columns: 1fr;
+	grid-column-gap: 0px;
+	.profileDetails {
+		width: 500px;
+		max-width: 95%;
+		justify-self: center;
+		align-items: center;
+		.profileMain {
+			align-items: center;
+		}
+		.description {
+			span {
+				@include flexB(row);
+			}
+		}
+	}
+	.profileInfo {
+		display: none;
+	}
+}
