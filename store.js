@@ -23,6 +23,8 @@ export const initialState = {
     internships: {
         internships: [],
         internshipInput: internshipInputs,
+        internship: {},
+        inputError: ''
     }
 };
 

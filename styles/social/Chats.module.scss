@@ -1,0 +1,101 @@
+.container {
+    display: grid;
+    grid-template-columns: 0fr 1.5fr;
+    .chatList {
+        background-color: rgba(22, 17, 17, 0.938);
+        border: 2px #804ac2;
+        width: fit-content;
+        height: 440px;
+        margin: 12px;
+        .search {
+            width: 400px;
+            height: 40px;
+            font-size: 15px;
+        }
+        li {
+            list-style-type: none;
+            overflow: auto;
+            .user {
+                color: rgb(10, 4, 4);
+                width: 300px;
+                margin: 8px;
+                color: aliceblue;
+                padding: 1px;
+                overflow: auto;
+                .listMsg {
+                    color: grey;
+                    width: fit-content;
+                    margin: 8px;
+                }
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.151);
+                }
+            }
+        }
+    }
+    .chatPrivate {
+        background-color: black;
+        width: 800px;
+        height: 440px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.4);
+        margin: 11px;
+        .yourProfile {
+            background-color: rgba(181, 104, 216, 0.603);
+            color: whitesmoke;
+            font-weight: bold;
+            padding: 12px;
+            font-size: 20px;
+            &:hover {
+                background-color: rgba(219, 156, 231, 0.945);
+            }
+        }
+        .body {
+            flex: 1;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px 30px;
+            .userMsg {
+                background-color: silver;
+                padding: 10px;
+                color: rgb(10, 4, 4);
+                width: fit-content;
+                border-radius: 6px;
+                margin-bottom: 8px;
+            }
+            .yourMsg {
+                margin-left: auto;
+                background-color: #804ac2;
+                color: black;
+                width: max-content;
+                border-radius: 6px;
+                margin-bottom: 8px;
+                padding: 10px;
+            }
+            .footer {
+                display: flex;
+                form {
+                    input {
+                        flex: 1;
+                        height: 40px;
+                        border: black;
+                        padding-left: 5px;
+                        font-size: 18px;
+                    }
+                    button {
+                        width: 100px;
+                        font-size: 18px;
+                        background-color: #804ac2;
+                        color: white;
+                        cursor: pointer;
+                        &:hover {
+                            background-color: #a37fce;
+                            transition: 0.2s ease;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

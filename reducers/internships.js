@@ -1,6 +1,7 @@
 import {internshipInputs} from '../utils/inputFields'
 
 const initialState = {
+	internship: {},
 	internships: [],
 	internshipInput: internshipInputs,
 	inputError: '',
@@ -17,6 +18,10 @@ const internshipsReducer = (state = initialState, action) => {
 			return {...state, internshipInput: newInput, inputError: ''};
 		case 'INPUT_ERROR' : 
 			return {...state, inputError: action.payload.error}
+		case 'SET_INTERNSHIPS' : 
+			return {...state, internships: action.payload.internships}
+		case 'SET_INTERNSHIP' :
+			return {...state, internship: action.payload.internship}
 		default:
 			return state;
 	}

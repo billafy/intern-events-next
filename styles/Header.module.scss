@@ -6,7 +6,6 @@
     grid-template-columns: 20% auto 40%;
     align-items: center;
     height: 150px;
-    // box-shadow: $shadow-s;
     .logo {
         height: 150px;
         cursor: pointer;
@@ -37,11 +36,11 @@
                 padding: 1rem;
                 ul {
                     display: block;
-                    border: 2px $button solid;
-                    border-radius: 0.8rem;
+                    border: 2px $border solid;
                     padding: 1rem 0px 0px 0px;
                     margin: 0px;
                     background: $background;
+                    box-shadow: $shadow-s;
                     li {
                         padding: 0px;
                         margin-bottom: 1rem;
@@ -117,7 +116,7 @@
             border: 1px solid $button;
             border-width: 0px 0px 1px 0px;
             justify-content: space-around;
-            align-items: center;
+            align-items: start;
             margin: 0px;
             transition: 0.5s all ease;
             li {    
@@ -130,6 +129,7 @@
                     padding: 0px;
                     ul {
                         border: 0px;
+                        box-shadow: none;
                         a {
                             color: $text;
                         }

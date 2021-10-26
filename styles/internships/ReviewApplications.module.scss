@@ -1,0 +1,30 @@
+@import '../templates/_colors.scss';
+@import '../templates/_variables.scss';
+
+.reviewApplications {
+	color: $text;
+	@include flexB(column);
+	form {
+		@include flexB(row);
+		select {
+			@include textField;
+			width: 200px;
+			max-width: 95%;
+			margin: auto 1rem;
+		}
+	}
+	.internshipDetails {
+		border: 1px solid $border;
+		box-shadow: $shadow-s;
+		width: 500px;
+		max-width: 95%;
+		margin: 2rem auto;
+		padding: 1rem;
+		p {
+			font-size: 0.85rem;
+		}
+	}
+	.applications {
+
+	}
+}

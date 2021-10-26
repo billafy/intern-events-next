@@ -21,7 +21,8 @@ const urls = {
 	commentPost: domain + 'social/commentPost/',
 	deleteComment : domain + 'social/deleteComment/',
 	deletePost: domain + 'social/deletePost/',
-	createInternship: domain + 'internships/createInternship/'
+	createInternship: domain + 'internships/createInternship/',
+	getCompanyInternships: domain + 'internships/getCompanyInternships/',
 };
 
 export default urls;

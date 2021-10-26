@@ -18,7 +18,7 @@ export const navLinks = [
 			},
 			{
 				text: 'Review Internship Applications',
-				href: '/internships/createdInternships',
+				href: '/internships/reviewApplications',
 				accountType: 'company',
 			},
 			{
@@ -63,6 +63,10 @@ export const navLinks = [
 				text: "Create a Post",
 				href: "/social/createPost",
 			},
+			{
+				text: 'Chats',
+				href: '/social/chats',
+			}
 		],
 	},
 ];
