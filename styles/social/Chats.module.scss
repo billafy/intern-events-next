@@ -1,100 +1,122 @@
-.container {
+@import "../templates/_colors.scss";
+@import "../templates/_variables.scss";
+
+.chatBox {
     display: grid;
-    grid-template-columns: 0fr 1.5fr;
+    grid-template-columns: 1fr 1.9fr;
+    width: 1000px;
+    max-width: 95%;
+    margin: auto;
+    min-height: 500px;
+    height: calc(100vh - 250px);
+    box-shadow: $shadow-s;
+    border: 1px solid $border;
+    color: $text;
     .chatList {
-        background-color: rgba(22, 17, 17, 0.938);
-        border: 2px #804ac2;
-        width: fit-content;
-        height: 440px;
-        margin: 12px;
+        background-color: transparent;
+        justify-self: right;
+        width: 100%;
         .search {
-            width: 400px;
-            height: 40px;
+            @include textField;
+            width: 100%;
+            height: 50px;
             font-size: 15px;
+            background: $background;
+            margin: 0px;
         }
-        li {
-            list-style-type: none;
-            overflow: auto;
-            .user {
-                color: rgb(10, 4, 4);
-                width: 300px;
-                margin: 8px;
-                color: aliceblue;
-                padding: 1px;
-                overflow: auto;
-                .listMsg {
-                    color: grey;
-                    width: fit-content;
-                    margin: 8px;
+        ul {
+            height: calc(100vh - 300px);
+            overflow-y: auto;
+            margin: 0px;
+            padding: 0px;
+            li {
+                @include flexV(row);
+                display: grid;
+                grid-template-columns: 80px auto;
+                height: 110px;
+                padding: 1rem;
+                border-bottom: 1px solid $border;
+                img {
+                    @include profilePicture(80px);
+                }
+                .chatName {
+                    color: $text;
+                    padding: 0px 1rem;
+                    width: 100%;
+                    overflow: hidden;
+                    p {
+                        margin: 0.5rem 0px;
+                    }
+                    .lastText {
+                        font-size: 0.9rem;
+                        color: grey;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
                 }
                 &:hover {
-                    background-color: rgba(255, 255, 255, 0.151);
+                    background-color: $hover;
+                    box-shadow: $shadow-s;
                 }
             }
         }
     }
-    .chatPrivate {
-        background-color: black;
-        width: 800px;
-        height: 440px;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.4);
-        margin: 11px;
-        .yourProfile {
-            background-color: rgba(181, 104, 216, 0.603);
-            color: whitesmoke;
-            font-weight: bold;
-            padding: 12px;
-            font-size: 20px;
-            &:hover {
-                background-color: rgba(219, 156, 231, 0.945);
+    .chat {
+        display: grid;
+        grid-template-rows: 50px auto 50px;
+        background: transparent;
+        border-left: 1px solid $border;
+        .chatProfile {
+            @include flexV(row);
+            background-color: $secondary;
+            height: 50px;
+            padding: 0px 0.5rem;
+            img {
+                @include profilePicture(40px);
+            }
+            p {
+                font-size: 1.3rem;
+                margin-left: 0.5rem;
             }
         }
-        .body {
-            flex: 1;
-            color: white;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 20px 30px;
-            .userMsg {
-                background-color: silver;
-                padding: 10px;
-                color: rgb(10, 4, 4);
+        .conversation {
+            padding: 1rem;
+            .message {
+                color: $text;
+                background: $secondary;
+                padding: 0.8rem;
                 width: fit-content;
-                border-radius: 6px;
                 margin-bottom: 8px;
+                border-radius: 10px;
+                box-shadow: $shadow-s;
             }
-            .yourMsg {
+            .sentMessage {
                 margin-left: auto;
-                background-color: #804ac2;
-                color: black;
-                width: max-content;
-                border-radius: 6px;
-                margin-bottom: 8px;
-                padding: 10px;
             }
-            .footer {
-                display: flex;
-                form {
-                    input {
-                        flex: 1;
-                        height: 40px;
-                        border: black;
-                        padding-left: 5px;
-                        font-size: 18px;
-                    }
-                    button {
-                        width: 100px;
-                        font-size: 18px;
-                        background-color: #804ac2;
-                        color: white;
-                        cursor: pointer;
-                        &:hover {
-                            background-color: #a37fce;
-                            transition: 0.2s ease;
-                        }
-                    }
-                }
+            .receivedMessage {
+                background: $hover;
+            }
+        }
+        .sendMessage {
+            @include flexB(row);
+            > * {
+                border: 0px;
+                color: $text;
+            }
+            input {
+                height: 45px;
+                background: transparent;
+                width: 90%;
+                border-top: 1px solid $border;
+                font-size: 1rem;
+                padding: 0px 0.5rem;
+            }
+            button {
+                @include button;
+                border-radius: 0px;
+                height: 45px;
+                width: 10%;
             }
         }
     }

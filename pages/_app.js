@@ -1,26 +1,21 @@
 import { useEffect } from "react";
-
 import { Provider } from "react-redux";
 import { useStore } from "../store";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-
 import Head from "next/head";
 import Loading from "../components/Loading";
-
-import { reqPost } from "../utils/customRequests";
+import { reqGet, reqPost } from "../utils/customRequests";
 import { defaultInputs } from "../utils/inputFields";
 import urls from "../utils/urls";
-
 import "../styles/globals.scss";
-
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 const Main = ({ Component, pageProps }) => {
     const router = useRouter();
     const dispatch = useDispatch();
-    const { width, loading } = useSelector((state) => state.auth);
+    const { width, loading} = useSelector((state) => state.auth);
 
     const refresh = async () => {
         const res = await reqPost(urls.refresh);

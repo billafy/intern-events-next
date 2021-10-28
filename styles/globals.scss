@@ -1,5 +1,5 @@
 @import "./templates/_colors.scss";
-@import url('https://fonts.googleapis.com/css2?family=Georama:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Georama:wght@300&display=swap");
 * {
     box-sizing: border-box;
     font-family: "Georama", "Segoe UI", "sans-serif";
@@ -50,6 +50,17 @@ body {
     }
     textarea {
         resize: none;
+    }
+    ::-webkit-scrollbar {
+        width: 0.5rem;
+    }
+    ::-webkit-scrollbar-track {
+        background: $background;
+        border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: $secondary;
+        border-radius: 9999px;
     }
 }
 @media (min-width: 668px) and (max-width: 1202px) {

@@ -19,6 +19,8 @@ export const initialState = {
     },
     social: {
         posts: [],
+        chats: [],
+        selectedChat: {},
     },
     internships: {
         internships: [],

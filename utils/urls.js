@@ -23,6 +23,8 @@ const urls = {
 	deletePost: domain + 'social/deletePost/',
 	createInternship: domain + 'internships/createInternship/',
 	getCompanyInternships: domain + 'internships/getCompanyInternships/',
+	getChats: domain + 'social/getChats/',
+	socket: domain,
 };
 
 export default urls;

@@ -11,3 +11,7 @@ export const getResume = (resumeName) => {
 export const getPost = (postName) => {
 	return `${process.env.NEXT_PUBLIC_API}posts/${postName}`
 }
+
+export const getName = (account) => {
+	return account.details.name || `${account.details.firstName} ${account.details.lastName}`;
+}
