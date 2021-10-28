@@ -21,6 +21,7 @@ export const initialState = {
         posts: [],
         chats: [],
         selectedChat: {},
+        text: ''
     },
     internships: {
         internships: [],

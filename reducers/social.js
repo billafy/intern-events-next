@@ -2,10 +2,11 @@ const initialState = {
 	posts: [],
 	chats: [],
 	selectedChat: {},
+	text: '',
 };
 
 const socialReducer = (state = initialState, action) => {
-	let newPosts, newPost, postId, newChats, newChat;
+	let newPosts, newPost, postId, newChats, newChat, newMessage;
 	switch (action.type) {
 		case 'SET_POSTS' : 
 			return {...state, posts: action.payload.posts}
@@ -26,8 +27,15 @@ const socialReducer = (state = initialState, action) => {
 			return {...state, chats: newChats, selectedChat: newChats.length > 0 ? newChats[0] : {}}
 		case 'SELECT_CHAT' : 
 			newChat = state.chats.find(chat => chat.account._id === action.payload.chatId)
-			console.log(state.chats)
-			return {...state, selectedChat: newChat || {}}
+			return {...state, selectedChat: newChat || {}, text: ''}
+		case 'UPDATE_CHATS' : 
+			newMessage = action.payload.message
+			newChat = state.chats.find(chat => (chat.account._id === newMessage.from || chat.account._id === newMessage.to))
+			newChat = {...newChat, chat: [...newChat.chat, newMessage]};
+			newChats = state.chats.filter(chat => (chat.account._id !== newMessage.from && chat.account._id !== newMessage.to))
+			return {...state, chats: [newChat, ...newChats], selectedChat: newChat};
+		case 'SET_TEXT' : 
+			return {...state, text: action.payload.text};
 		default:
 			return state;
 	}
