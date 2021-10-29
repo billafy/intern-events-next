@@ -14,7 +14,7 @@ $shadow-s: 2px 2px 3px black;
     font-size: 1rem;
     border-radius: 9999px;
     padding: 0.5rem 0.5rem;
-    transition: 0.1s all ease;
+    transition: all 0.3s ease;
     text-decoration: none;
     box-shadow: $shadow-s;
     &:hover {
@@ -40,7 +40,7 @@ $shadow-s: 2px 2px 3px black;
     color: $text;
     text-decoration: none;
     font-weight: 300;
-    transition: all 0.3s ease 0s;
+    transition: all 0.3s ease;
     cursor: pointer;
     font-weight: normal;
     &:hover {
@@ -51,6 +51,7 @@ $shadow-s: 2px 2px 3px black;
     color: $text;
     font-size: 0.9rem;
     cursor: pointer;
+    transition: all 0.3s ease;
     &:hover {
         color: $link;
     }

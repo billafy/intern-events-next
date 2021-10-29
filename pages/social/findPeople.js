@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { AiOutlineSearch } from "react-icons/ai";
+import { AiOutlineSearch, AiFillCaretRight } from "react-icons/ai";
 import _ from "../../styles/social/FindPeople.module.scss";
 import { reqGet } from "../../utils/customRequests";
 import urls from "../../utils/urls";
 import { getImage } from "../../utils/utils";
 import { useSelector } from "react-redux";
-import Link from 'next/link'
-import {AiFillCaretRight} from 'react-icons/ai'
+import Link from 'next/link';
 
 const FindPeople = () => {
     const {

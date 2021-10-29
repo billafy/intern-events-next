@@ -18,7 +18,7 @@ const Navbar = () => {
                         <span>
                             <ul>
                                 {link.subLinks.map(subLink => {
-                                    if(subLink.accountType && (!isLoggedIn || subLink.accountType !== account.accountType)) 
+                                    if(subLink.accountType && (!isLoggedIn || !subLink.accountType.includes(account.accountType))) 
                                         return <Fragment key={subLink.text}></Fragment>
                                     return (
                                         <li key={subLink.text}>

@@ -14,21 +14,21 @@ export const navLinks = [
 			{
 				text: 'Create Internship',
 				href: '/internships/createInternship',
-				accountType: 'company',
+				accountType: ['company'],
 			},
 			{
 				text: 'Review Internship Applications',
 				href: '/internships/reviewApplications',
-				accountType: 'company',
+				accountType: ['company'],
 			},
 			{
 				text: "Search Internships",
-				href: "/",
+				href: "/internships/searchInternships",
 			},
 			{
 				text: "Applied Internships",
 				href: "/",
-				accountType: 'student',
+				accountType: ['student'],
 			},
 		],
 	},
@@ -43,7 +43,7 @@ export const navLinks = [
 			{
 				text: "Applied Events",
 				href: "/",
-				accountType: 'student',
+				accountType: ['student'],
 			},
 		],
 	},
@@ -54,6 +54,7 @@ export const navLinks = [
 			{
 				text: "Timeline",
 				href: "/social/timeline",
+				accountType: ['student', 'college', 'company'],
 			},
 			{
 				text: 'Find People',
@@ -62,10 +63,12 @@ export const navLinks = [
 			{
 				text: "Create a Post",
 				href: "/social/createPost",
+				accountType: ['student', 'college', 'company'],
 			},
 			{
 				text: 'Chats',
 				href: '/social/chats',
+				accountType: ['student', 'college', 'company'],
 			}
 		],
 	},

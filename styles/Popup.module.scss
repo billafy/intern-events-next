@@ -2,14 +2,18 @@
 @import "./templates/_variables.scss";
 
 .popupContainer {
+	text-align: center;
 	.showPopup {
-		color: $text;
+		@include link2;
 		background: transparent;
 		border: 0px;
-		font-size: 1rem;
+		font-size: 1.3rem;
+		text-decoration: underline;
 	}
 	.popup {
-		background: $background;
+		background: $primary;
+		border: 1px solid $border;
+		box-shadow: $shadow-l;
 		min-width: 300px;
 		max-width: 90%;
 		max-height: 90vh;
@@ -19,7 +23,6 @@
 		top: 50%;
 		transform: translate(-50%, -50%);
 		padding: 2rem;
-		@include formBorder;
 		.closeButton {
 			text-align: right;
 			button {

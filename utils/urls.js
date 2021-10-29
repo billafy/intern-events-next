@@ -21,6 +21,7 @@ const urls = {
 	commentPost: domain + 'social/commentPost/',
 	deleteComment : domain + 'social/deleteComment/',
 	deletePost: domain + 'social/deletePost/',
+	getInternships: domain + 'internships/getInternships/',
 	createInternship: domain + 'internships/createInternship/',
 	getCompanyInternships: domain + 'internships/getCompanyInternships/',
 	getChats: domain + 'social/getChats/',
