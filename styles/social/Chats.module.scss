@@ -8,12 +8,12 @@
     }
     .chatBox {
         display: grid;
-        grid-template-columns: 1fr 1.9fr;
-        width: 1000px;
+        grid-template-columns: 1fr 2fr;
+        width: 1200px;
         max-width: 95%;
         margin: auto;
         min-height: 500px;
-        height: calc(100vh - 250px);
+        height: calc(100vh - 50px);
         box-shadow: $shadow-s;
         border: 1px solid $border;
         color: $text;
@@ -37,7 +37,7 @@
             }
             ul {
                 min-height: 450px;
-                height: calc(100vh - 308px);
+                height: calc(100vh - 115px);
                 overflow-y: auto;
                 margin: 0px;
                 padding: 0px;
@@ -88,6 +88,7 @@
             background: transparent;
             border-left: 1px solid $border;
             align-items: stretch;
+            height: calc(100vh - 50px);
             .chatProfile {
                 @include flexV(row);
                 background-color: $secondary;
@@ -107,7 +108,7 @@
             }
             .conversation {
                 min-height: 400px;
-                height: calc(100vh - 350px);
+                height: calc(100vh - 150px);
                 padding: 1rem;
                 overflow-y: auto;
                 .message {

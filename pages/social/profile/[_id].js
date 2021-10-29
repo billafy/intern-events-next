@@ -6,23 +6,27 @@ import { GiMale, GiFemale } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
 import {reqPut} from '../../../utils/customRequests'
 import Link from 'next/link'
+import {useRouter} from 'next/router'
 
 const Profile = ({ propProfile }) => {
+	const router = useRouter()
 	const [profile, setProfile] = useState(propProfile)
 	const {
 		auth: { isLoggedIn, account },
 	} = useSelector((state) => state);
 	const dispatch = useDispatch()
 
-	console.log(account)
-
 	const followToggle = async () => {
 		const data = await reqPut(urls.followAccount + profile._id)
 		if(data.success) {
-			console.log(data.body.account)
 			setProfile(data.body.followingAccount)
 			dispatch({type: 'UPDATE_ACCOUNT', payload: {account: data.body.account}})
 		}
+	}
+
+	const startChat = () => {
+		dispatch({type: 'START_NEW_CHAT', payload: {profile}})
+		router.push('/social/chats');
 	}
 
 	return (
@@ -57,9 +61,14 @@ const Profile = ({ propProfile }) => {
 					</>
 				)}
 				{isLoggedIn && account._id !== profile._id && (
-					<button onClick={followToggle} className={_.followButton}>
-						{account.following.includes(profile._id) ? 'Unfollow' : 'Follow'}
-					</button>
+					<div className={_.socialButtons}>				
+						<button onClick={followToggle}>
+							{account.following.includes(profile._id) ? 'Unfollow' : 'Follow'}
+						</button>
+						<button onClick={startChat}>
+							Message
+						</button>
+					</div>
 				)}
 				<div className={_.followCount}>
 					<div>

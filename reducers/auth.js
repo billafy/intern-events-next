@@ -32,6 +32,7 @@ const authReducer = (state = initialState, action) => {
 				...state,
 				isLoggedIn: false,
 				account: {},
+				loading: false,
 			};
 		case "UPDATE_INPUT":
 			return { ...state, accountInput: state.accountInput };

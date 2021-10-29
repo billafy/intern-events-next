@@ -13,9 +13,8 @@ const Chats = () => {
 	const dispatch = useDispatch();
 	const {
 		auth: { isLoggedIn, account, width },
-		social: { chats, selectedChat, text },
+		social: { chats, selectedChat, text, socket },
 	} = useSelector((state) => state);
-	const [socket, setSocket] = useState(null);
 	const [showChatList, setShowChatList] = useState(true);
 	const scrollRef = useRef(null);
 
@@ -29,7 +28,6 @@ const Chats = () => {
 	};
 
 	const selectChat = (chatId) => {
-		console.log("selecting");
 		dispatch({ type: "SELECT_CHAT", payload: { chatId } });
 		if (width <= 768) setShowChatList(false);
 	};
@@ -71,7 +69,8 @@ const Chats = () => {
 	}, [selectedChat]);
 
 	useEffect(() => {
-		if (isLoggedIn) setSocket(io(urls.socket, { withCredentials: true }));
+		if (isLoggedIn) 
+			dispatch({type: 'SET_SOCKET', payload: {socket: io(urls.socket, {withCredentials: true})}});
 
 		return () => {
 			if (socket) socket.disconnect();
@@ -142,7 +141,7 @@ const Chats = () => {
 									)}
 								/>
 								<Link
-									href={`social/profile/${selectedChat.account._id}`}
+									href={`/social/profile/${selectedChat.account._id}`}
 								>
 									{getName(selectedChat.account)}
 								</Link>
