@@ -25,7 +25,7 @@ const Profile = ({ propProfile }) => {
 	}
 
 	const startChat = () => {
-		dispatch({type: 'START_NEW_CHAT', payload: {profile}})
+		dispatch({type: 'START_NEW_CHAT', payload: {account: profile}})
 		router.push('/social/chats');
 	}
 

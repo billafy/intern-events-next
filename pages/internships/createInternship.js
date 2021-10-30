@@ -32,7 +32,7 @@ const CreateInternship = () => {
             !internshipInput.stipend
         ) 
             return dispatch({type: 'INPUT_ERROR', payload: {error: 'Fill all the fields'}})
-        const data = await reqPost(urls.createInternship, { internshipInput });
+        const data = await reqPost(urls.createInternship + account._id, { internshipInput });
         if(data.success) 
             return router.replace('/')
         dispatch({type: 'INPUT_ERROR', payload: {error: data.body.error}})

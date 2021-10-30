@@ -22,6 +22,15 @@ const internshipsReducer = (state = initialState, action) => {
 			return {...state, internships: action.payload.internships}
 		case 'SET_INTERNSHIP' :
 			return {...state, internship: action.payload.internship}
+		case 'UPDATE_INTERNSHIPS' : 
+			newInternship = action.payload.internship
+			newInternships = state.internships.map(internship => {
+				if(internship._id === newInternship._id) {
+					return newInternship
+				}
+				return internship
+			})
+			return {...state, internships: newInternships, internship: newInternship}
 		default:
 			return state;
 	}

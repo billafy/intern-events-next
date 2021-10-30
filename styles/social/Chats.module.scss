@@ -73,6 +73,10 @@
                         box-shadow: $shadow-s;
                     }
                 }
+                .selectedChat {
+                    background-color: $hover;
+                    box-shadow: $shadow-s;
+                }
                 .noChats {
                     @include flexV(column);
                     a {

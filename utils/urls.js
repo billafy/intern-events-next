@@ -22,8 +22,10 @@ const urls = {
 	deleteComment : domain + 'social/deleteComment/',
 	deletePost: domain + 'social/deletePost/',
 	getInternships: domain + 'internships/getInternships/',
+	getInternship: domain + 'internships/getInternship/',
 	createInternship: domain + 'internships/createInternship/',
 	getCompanyInternships: domain + 'internships/getCompanyInternships/',
+	rejectApplication: domain + 'internships/rejectApplication/',
 	getChats: domain + 'social/getChats/',
 	socket: domain,
 };

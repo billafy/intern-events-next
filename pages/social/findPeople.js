@@ -3,7 +3,7 @@ import { AiOutlineSearch, AiFillCaretRight } from "react-icons/ai";
 import _ from "../../styles/social/FindPeople.module.scss";
 import { reqGet } from "../../utils/customRequests";
 import urls from "../../utils/urls";
-import { getImage } from "../../utils/utils";
+import { getName, getImage } from "../../utils/utils";
 import { useSelector } from "react-redux";
 import Link from 'next/link';
 
@@ -51,8 +51,7 @@ const FindPeople = () => {
                             <li key={result._id}>
                                 <img src={getImage(result.profilePicture)} />
                                 <Link href={account._id !== result._id ? `/social/profile/${result._id}` : '/myProfile'}>
-                                    {result.details.name ||
-                                        `${result.details.firstName} ${result.details.lastName}`}
+                                    {getName(result)}
                                 </Link>
                             </li>
                         );

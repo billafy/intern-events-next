@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import _ from "../../styles/social/Post.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { getPost, getImage } from "../../utils/utils";
+import { getName, getPost, getImage } from "../../utils/utils";
 import { AiFillHeart, AiOutlineHeart, AiOutlineComment } from "react-icons/ai";
 import urls from "../../utils/urls";
 import { reqDelete, reqPut } from "../../utils/customRequests";
@@ -58,9 +58,7 @@ const Post = ({ post }) => {
 					alt="Post Profile"
 				/>
 				<Link href={`/social/profile/${post.postedBy._id}`}>
-					{post.postedBy.accountType === "student"
-						? `${post.postedBy.details.firstName} ${post.postedBy.details.lastName}`
-						: post.postedBy.details.name}
+					{getName(post.postedBy)}
 				</Link>
 				{isLoggedIn && account._id === post.postedBy._id &&
 					<FaTrash onClick={() => deletePost(post._id)}/>}

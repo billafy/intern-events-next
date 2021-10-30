@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import urls from "../../utils/urls";
 import { useDispatch, useSelector } from "react-redux";
-import { reqGet } from "../../utils/customRequests";
+import { reqDelete, reqGet } from "../../utils/customRequests";
 import { useRouter } from "next/router";
-import _ from '../../styles/internships/ReviewApplications.module.scss';
+import _ from "../../styles/internships/ReviewApplications.module.scss";
+import { getName, getImage } from "../../utils/utils";
+import Link from "next/link";
 
 const ReviewApplications = () => {
 	const router = useRouter();
@@ -27,10 +29,29 @@ const ReviewApplications = () => {
 		}
 	};
 
-	const selectInternship = ({target: {value}}) => {
-		const newInternship = internships.filter(int => int.title === value)[0]
-		dispatch({type: 'SET_INTERNSHIP', payload: {internship: newInternship}})
-	}
+	const selectInternship = ({ target: { value } }) => {
+		const newInternship = internships.find((int) => int.title === value);
+		dispatch({
+			type: "SET_INTERNSHIP",
+			payload: { internship: newInternship },
+		});
+	};
+
+	const startChat = (studentAccount) => {
+		dispatch({
+			type: "START_NEW_CHAT",
+			payload: { account: studentAccount },
+		});
+		router.push("/social/chats");
+	};
+
+	const rejectApplication = async (applicationId) => {
+		const data = await reqDelete(
+			`${urls.rejectApplication}${account._id}/${internship._id}/${applicationId}`
+		);
+		if (data.success)
+			dispatch({ type: "UPDATE_INTERNSHIPS", payload: { internship: data.body.internship } });
+	};
 
 	useEffect(() => {
 		if (!isLoggedIn || account.accountType !== "company")
@@ -45,7 +66,10 @@ const ReviewApplications = () => {
 				<>
 					<form>
 						<label>Select an Internship</label>
-						<select value={internship.title} onChange={selectInternship}>
+						<select
+							value={internship.title}
+							onChange={selectInternship}
+						>
 							{internships.map((internship) => (
 								<option key={internship._id}>
 									{internship.title}
@@ -66,12 +90,64 @@ const ReviewApplications = () => {
 						<p>Application ends on {internship.applicationEnd}</p>
 					</div>
 					<div className={_.applications}>
-						<h3>Applications ({internship.applications ? internship.applications.length : 0})</h3>
+						<h3>
+							Applications (
+							{internship.applications
+								? internship.applications.length
+								: 0}
+							)
+						</h3>
 						{internship.applications &&
 						internship.applications.length > 0 ? (
 							<ul>
 								{internship.applications.map((application) => {
-									return <li key={application._id}></li>;
+									return (
+										<li key={application._id}>
+											<div className={_.studentInfo}>
+												<img
+													src={getImage(
+														application.studentId
+															.profilePicture
+													)}
+												/>
+												<Link
+													href={`/social/profile/${application.studentId._id}`}
+												>
+													{getName(
+														application.studentId
+													)}
+												</Link>
+											</div>
+											<div
+												className={_.applicationMessage}
+											>
+												<h4>Why have I applied?</h4>
+												<p>{application.message}</p>
+											</div>
+											<div
+												className={_.applicationButtons}
+											>
+												<button
+													onClick={() =>
+														rejectApplication(
+															application._id
+														)
+													}
+												>
+													Reject
+												</button>
+												<button
+													onClick={() =>
+														startChat(
+															application.studentId
+														)
+													}
+												>
+													Message
+												</button>
+											</div>
+										</li>
+									);
 								})}
 							</ul>
 						) : (

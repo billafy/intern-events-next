@@ -29,8 +29,8 @@ const socialReducer = (state = initialState, action) => {
 		if(state.chats.length > 0)
 			newChat = newChats.find(chat => chat.account._id === state.chats[0].account._id) 
 		if(newChat) 
-			return {...state, chats: newChats, selectedChat: newChats.length > 0 ? newChats[0] : {}};
-		return {...state, chats: [...state.chats, ...newChats], selectedChat: state.selectedChat === {} ? newChats[0] : state.selectedChat}
+			return {...state, chats: newChats, selectedChat: newChat};
+		return {...state, chats: [...state.chats, ...newChats], selectedChat: state.selectedChat.account ? newChats[0] : state.selectedChat}
 	}
 	else if(action.type === 'SELECT_CHAT') {
 		const newChat = state.chats.find(chat => chat.account._id === action.payload.chatId)
@@ -45,10 +45,10 @@ const socialReducer = (state = initialState, action) => {
 		return {...state, chats: [newChat, ...newChats], selectedChat: newChat};
 	}
 	else if(action.type === 'START_NEW_CHAT') {
-		let newChat = state.chats.find(chat => chat.account._id === action.payload.profile._id)
+		let newChat = state.chats.find(chat => chat.account._id === action.payload.account._id)
 		if(newChat) 
 			return {...state, selectedChat: newChat}
-		newChat = {account: action.payload.profile, chat: []};
+		newChat = {account: action.payload.account, chat: []};
 		return {...state, chats: [newChat, ...state.chats], selectedChat: newChat}
 	}
 	else if(action.type === 'SET_TEXT') 

@@ -6,7 +6,7 @@ import _ from "../styles/Header.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "./Navbar";
 import { reqDelete } from "../utils/customRequests";
-import { getImage } from "../utils/utils";
+import { getName, getImage } from "../utils/utils";
 import urls from "../utils/urls";
 import { useRouter } from "next/router";
 
@@ -44,9 +44,7 @@ const Header = () => {
                 (isLoggedIn && account ? (
                     <div className={_.profileHeader}>
                         <Link href="/myProfile">
-                            {account && account.accountType === "student"
-                                ? `${account.details.firstName} ${account.details.lastName}`
-                                : account.details.name}
+                            {getName(account)}
                         </Link>
                         <img
                             className={_.profilePicture}
