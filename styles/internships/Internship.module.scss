@@ -6,64 +6,54 @@
     font-size: 1rem;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
-.card {
-    background: $primary;
-    border: 1px solid $border;
-    margin: 2rem;
-    width: 80vw;
-
-    & .card_cover {
-        display: flex;
-        justify-content: space-between;
+.internship {
+    h1 {
+        text-align: center;
+        color: $text;
+    }
+    .internshipInfo {
+        background: $primary;
+        border: 1px solid $border;
+        width: 1000px;
+        max-width: 95%;
+        margin: auto;
         padding: 1rem;
-        width: 100%;
-
-        & .headings {
-            place-items: center start;
-            a {
-                margin-left: 2rem;
-                font-size: 1rem;
-                background: $button;
-                border: none;
-                outline: none;
-                font-weight: bold;
-                border-radius: 3rem;
-                padding: 0.7rem;
-
-                &:hover {
-                    background: $text;
-                    color: $button;
-                    transition: all 0.3s ease-in-out;
-                }
+        .icons {
+            @include flexH(column);
+            svg {
+                color: $secondary;
+                margin-right: 0.5rem;
+            }
+            p {
+                color: $text;
             }
         }
-
-        & .labels {
-            place-items: center;
-            @include labels;
-
-            & .fas {
-                filter: opacity(60%);
+        .description {
+            color: $text;
+        }
+        .applicationForm {
+            @include flexB(column);
+            width: 400px;
+            max-width: 95%;
+            h3 {
+                color: $text;
+            }
+            textarea {
+                @include textField;
+                height: 150px;
+                width: 90%;
+            }
+            button {
+                @include button;
             }
         }
-    }
-
-    & .card_content {
-        flex: 1;
-        padding: 1rem;
-    }
-}
-@media (min-width: 297px) and (max-width: 667px) {
-    .card_cover {
-        & .labels {
-            gap: 1.3rem;
+        > a {
+            @include link2;
+            display: block;
+            text-align: center;
+            text-decoration: underline;
+            font-size: 1.5rem;
+            align-self: center;
         }
     }
 }

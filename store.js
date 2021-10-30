@@ -21,14 +21,22 @@ export const initialState = {
         posts: [],
         chats: [],
         selectedChat: {},
-        text: ''
+        text: "",
     },
     internships: {
         internships: [],
         internshipInput: internshipInputs,
         internship: {},
-        inputError: ''
-    }
+        inputError: "",
+        stipendFilter: { max: 0, min: 0 },
+        durationFilter: { max: 0, min: 0 },
+        filters: {
+            category: "All",
+            stipend: 0,
+            duration: 0,
+            keyword: '',
+        },
+    },
 };
 
 function initStore(preloadedState = initialState) {

@@ -103,7 +103,7 @@ const Chats = () => {
 										onClick={() =>
 											selectChat(chat.account._id)
 										}
-										className={selectedChat.account && chat.account._id === selectedChat.account._id ? _.selectedChat : ''}
+										className={selectedChat.account && chat.account && chat.account._id === selectedChat.account._id ? _.selectedChat : ''}
 									>
 										<img
 											src={getImage(

@@ -37,10 +37,14 @@
                     font-size: inherit;
                     @include textField;
                 }
+                p {
+                    color: $text;
+                }
             }
             .applyFilters {
                 @include button;
-                margin: 0.5rem auto;
+                margin: 0.5rem 0.5rem 0.5rem 0px;
+                width: 100px;
             }
         }
         .internshipResults {
@@ -92,6 +96,11 @@
                     &:hover {
                         box-shadow: $shadow-l;
                     }
+                }
+                .noResults {
+                    color: $text;
+                    text-align: center;
+                    grid-column: 1/3;
                 }
             }
         }

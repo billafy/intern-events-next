@@ -25,6 +25,7 @@ const urls = {
 	getInternship: domain + 'internships/getInternship/',
 	createInternship: domain + 'internships/createInternship/',
 	getCompanyInternships: domain + 'internships/getCompanyInternships/',
+	applyInternship: domain + 'internships/applyInternship/',
 	rejectApplication: domain + 'internships/rejectApplication/',
 	getChats: domain + 'social/getChats/',
 	socket: domain,
