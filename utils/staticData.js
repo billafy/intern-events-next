@@ -17,7 +17,7 @@ export const navLinks = [
 				accountType: ['company'],
 			},
 			{
-				text: 'Review Internship Applications',
+				text: 'Review Applications',
 				href: '/internships/reviewApplications',
 				accountType: ['company'],
 			},

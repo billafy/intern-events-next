@@ -44,7 +44,7 @@ const Footer = () => {
                 <p>
                     Handcrafted with{" "}
                     <span style={{ color: "red", fontSize: "1.2em" }}>❤</span>{" "}
-                    by LamiFY(Yash), Vishal and Vishranth
+                    by LamiFY(Yash), Vishal, Vishranth and Kushal
                 </p>
             </div>
         </footer>

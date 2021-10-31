@@ -30,7 +30,7 @@
             }
             span {
                 position: absolute;
-                z-index: 1;
+                z-index: 2;
                 background: transparent;
                 display: none;
                 padding: 1rem;
@@ -108,7 +108,7 @@
         }
         > ul {  
             background: $background;
-            z-index: 1;
+            z-index: 2;
             padding: 0px 0px 2rem 0px;
             width: 100%;
             grid-column: 1 / 4;
@@ -144,12 +144,12 @@
             border-bottom: none;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            grid-row-gap: 1rem;
+            grid-gap: 0.3rem;
             padding: 0px 1rem;
         }
         .loginSignupButtons, .profileHeader {
             width: 100%;
-            z-index: 1;
+            z-index: 2;
             background: $background;
             grid-column: 1 / 3;
             grid-row: 3 / 4;

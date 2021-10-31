@@ -93,7 +93,11 @@
 			}
 		}
 	}
-	@media (min-width: 0px) and (max-width: 368px) {
+	@media (min-width: 0px) and (max-width: 468px) {
+		form {
+			@include flexB(column);
+			column-gap: 1rem;
+		}	
 		.applications {
 			ul {
 				li {

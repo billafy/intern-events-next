@@ -242,11 +242,16 @@
 .collegeCompanyProfile {
 	grid-template-columns: 1fr;
 	grid-column-gap: 0px;
+	h1 {
+
+		grid-column: 1/2;
+	}
 	.profileDetails {
-		width: 500px;
+		width: auto;
 		max-width: 95%;
 		justify-self: center;
 		align-items: center;
+		grid-column: 1/2;
 		.profileMain {
 			align-items: center;
 		}
@@ -258,5 +263,6 @@
 	}
 	.profileInfo {
 		display: none;
+		grid-column: 1/2;
 	}
 }

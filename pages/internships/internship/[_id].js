@@ -44,7 +44,7 @@ const Internship = () => {
 	return internship.companyId ? (
 		<div className={_.internship}>
 			<h1>
-				{internship.title} - {internship.companyId.details.name}
+				{internship.title} - {internship.companyId.details && internship.companyId.details.name}
 			</h1>
 			<div className={_.internshipInfo}>
 				<div className={_.icons}>
@@ -59,7 +59,7 @@ const Internship = () => {
 					</p>
 					<p>
 						<FaMapMarkerAlt />{" "}
-						{internship.companyId.details.address}
+						{internship.companyId.details && internship.companyId.details.address}
 					</p>
 					<p>
 						<FaCalendar/> Apply by {internship.applicationEnd}
