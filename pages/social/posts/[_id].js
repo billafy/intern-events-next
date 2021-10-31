@@ -4,23 +4,43 @@ import { getImage } from "../../../utils/utils";
 import { useDispatch, useSelector } from "react-redux";
 import Post from "../../../components/Social/Post";
 import _ from "../../../styles/social/Timeline.module.scss";
+import {useRouter} from 'next/router';
+import {reqGet} from '../../../utils/customRequests';
+import Loading from '../../../components/Loading';
 
-const Posts = ({ propPosts, propAccount }) => {
+const Posts = () => {
+	const router = useRouter()
 	const {
-		auth: { isLoggedIn, account }, social: {posts}
+		social: {posts}
 	} = useSelector((state) => state);
 	const dispatch = useDispatch();
+	const [profile, setProfile] = useState(null);
+
+	const getPosts = async () => {
+		const data = await reqGet(urls.getPosts + router.query._id);
+		if(data.success) 
+			dispatch({type: 'SET_POSTS', payload: {posts: data.body.posts}});
+	}
+
+	const getPostsAccount = async () => {
+		const data = await reqGet(urls.getAccount + router.query._id);
+		if(data.success) 
+			setProfile(data.body.account);
+	}
 
 	useEffect(() => {
-		dispatch({type: 'SET_POSTS', payload: {posts: propPosts}})
+		getPosts();
+		getPostsAccount();
 	}, [])
 
+	if(!profile) 
+		return <Loading/>
 	return (
 		<div className={_.timeline}>
 			<h1>
-				{propAccount &&
-					(propAccount.details.name ||
-						`${propAccount.details.firstName} ${propAccount.details.lastName}'s`)}{" "}
+				{profile &&
+					(profile.details.name ||
+						`${profile.details.firstName} ${profile.details.lastName}'s`)}{" "}
 				Posts
 			</h1>
 			<ul className={_.posts}>
@@ -37,32 +57,3 @@ const Posts = ({ propPosts, propAccount }) => {
 };
 
 export default Posts;
-
-export async function getStaticPaths() {
-	const response = await fetch(urls.getAccountIds);
-	const data = await response.json();
-	const _ids = data.body._ids.map((_id) => {
-		return {
-			params: {
-				_id: _id._id,
-			},
-		};
-	});
-	return {
-		paths: _ids,
-		fallback: false,
-	};
-}
-
-export const getStaticProps = async ({ params }) => {
-	let response = await fetch(urls.getPosts + params._id);
-	const postsData = await response.json();
-	response = await fetch(urls.getAccount + params._id);
-	const accountData = await response.json();
-	return {
-		props: {
-			propPosts: postsData.body.posts,
-			propAccount: accountData.body.account,
-		},
-	};
-};

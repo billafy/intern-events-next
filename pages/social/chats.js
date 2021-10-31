@@ -8,6 +8,7 @@ import { io } from "socket.io-client";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AiOutlineClose } from "react-icons/ai";
 import Link from "next/link";
+import {MdSend} from 'react-icons/md';
 
 const Chats = () => {
 	const dispatch = useDispatch();
@@ -174,7 +175,7 @@ const Chats = () => {
 										})
 									}
 								/>
-								<button onClick={sendMessage}>SEND</button>
+								<button onClick={sendMessage}><MdSend/></button>
 							</form>
 						</>
 					) : (

@@ -147,9 +147,11 @@
                 }
                 button {
                     @include button;
+                    @include flexB(row);
                     border-radius: 0px;
                     height: 45px;
                     width: 10%;
+                    font-size: 1.5rem;
                 }
             }
         }
@@ -182,6 +184,14 @@
                         display: block;
                         font-size: 2rem;
                         margin-right: 0.5rem;
+                    }
+                }
+                .sendMessage {
+                    input {
+                        width: 80%;
+                    }
+                    button {
+                        width: 20%;
                     }
                 }
             }

@@ -55,14 +55,14 @@
 			@include flexB(row);
 			textarea {
 				@include textField;
-				width: 90%;
+				width: 80%;
 				height: 35px;
 				margin: 0px;
 				border-color: $secondary;
 			}
 			input {
 				@include button;
-				width: 10%;
+				width: 20%;
 				border-radius: 0px;
 				height: 35px;
 			}
