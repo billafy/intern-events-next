@@ -27,7 +27,7 @@ export const navLinks = [
 			},
 			{
 				text: "Applied Internships",
-				href: "/",
+				href: "/internships/myAppliedInternships",
 				accountType: ['student'],
 			},
 		],

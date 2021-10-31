@@ -52,8 +52,9 @@ const SearchInternships = () => {
 		getInternships(query);
 	}
 
-	useEffect(() => {
-		getInternships();
+	useEffect(async () => {
+		await getInternships();
+		dispatch({type: 'SET_FILTERS'});
 	}, []);
 
 	const getFilters = () => {
@@ -137,12 +138,7 @@ const SearchInternships = () => {
 									<div className={_.internshipInfo}>
 										<h3>{internship.title}</h3>
 										<p>
-											{internship.companyId.details.name}{" "}
-											-{" "}
-											{
-												internship.companyId.details
-													.address
-											}
+											{internship.companyId.details && `${internship.companyId.details.name} - ${internship.companyId.details.address}`}
 										</p>
 										<p>
 											{internship.stipend > 0

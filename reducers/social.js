@@ -1,6 +1,7 @@
 const initialState = {
 	posts: [],
 	chats: [],
+	newChat: null,
 	selectedChat: {},
 	text: '',
 	socket: null,
@@ -25,31 +26,28 @@ const socialReducer = (state = initialState, action) => {
 	}
 	else if(action.type === 'SET_CHATS') {
 		const newChats = action.payload.chats
-		let newChat;
-		if(state.chats.length > 0)
-			newChat = newChats.find(chat => chat.account._id === state.chats[0].account._id) 
+		const newChat = state.newChat;
 		if(newChat) 
-			return {...state, chats: newChats, selectedChat: newChat};
-		return {...state, chats: [...state.chats, ...newChats], selectedChat: state.selectedChat.account ? newChats[0] : state.selectedChat}
+			return {...state, chats: [newChat, ...newChats], selectedChat: newChat, newChat: null};
+		return {...state, chats: newChats, selectedChat: newChats.length > 0 ? newChats[0] : {}};
+	}
+	else if(action.type === 'NEW_CHAT') {
+		let newChat = state.chats.find(cht => cht.account._id === action.payload.account._id)
+		if(newChat) 
+			return {...state, selectedChat: newChat};
+		newChat = {account: action.payload.account, chat: []};
+		return {...state, newChat: newChat, chats: [newChat, ...state.chats], selectedChat: newChat};
 	}
 	else if(action.type === 'SELECT_CHAT') {
 		const newChat = state.chats.find(chat => chat.account._id === action.payload.chatId)
 		return {...state, selectedChat: newChat || {}, text: ''}
 	}
 	else if(action.type === 'UPDATE_CHATS') {
-		console.log(1);
 		const newMessage = action.payload.message
 		let newChat = state.chats.find(chat => (chat.account._id === newMessage.from || chat.account._id === newMessage.to))
 		newChat = {...newChat, chat: [...newChat.chat, newMessage]};
 		const newChats = state.chats.filter(chat => (chat.account._id !== newMessage.from && chat.account._id !== newMessage.to))
 		return {...state, chats: [newChat, ...newChats], selectedChat: newChat};
-	}
-	else if(action.type === 'START_NEW_CHAT') {
-		let newChat = state.chats.find(chat => chat.account._id === action.payload.account._id)
-		if(newChat) 
-			return {...state, selectedChat: newChat}
-		newChat = {account: action.payload.account, chat: []};
-		return {...state, chats: [newChat, ...state.chats], selectedChat: newChat}
 	}
 	else if(action.type === 'SET_TEXT') 
 		return {...state, text: action.payload.text};

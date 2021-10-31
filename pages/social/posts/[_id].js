@@ -59,7 +59,6 @@ export const getStaticProps = async ({ params }) => {
 	const postsData = await response.json();
 	response = await fetch(urls.getAccount + params._id);
 	const accountData = await response.json();
-	console.log(accountData);
 	return {
 		props: {
 			propPosts: postsData.body.posts,

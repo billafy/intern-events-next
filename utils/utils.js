@@ -1,8 +1,8 @@
 export const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 export const getImage = (imageName) => {
-	if(imageName === 'default.png') 
-		return 'https://www.pinclipart.com/picdir/middle/157-1578186_user-profile-default-image-png-clipart.png';
+	if(!imageName || imageName === 'default.png') 
+		return 'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg';
 	return `${process.env.NEXT_PUBLIC_API}profilePictures/${imageName}`
 }
 

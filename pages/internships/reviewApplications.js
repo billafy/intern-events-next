@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import urls from "../../utils/urls";
 import { useDispatch, useSelector } from "react-redux";
-import { reqDelete, reqGet } from "../../utils/customRequests";
+import { reqGet, reqPut } from "../../utils/customRequests";
 import { useRouter } from "next/router";
 import _ from "../../styles/internships/ReviewApplications.module.scss";
 import { getName, getImage } from "../../utils/utils";
@@ -37,20 +37,27 @@ const ReviewApplications = () => {
 		});
 	};
 
-	const startChat = (studentAccount) => {
+	const updateApplicationStatus = async (applicationId, status) => {
+		const data = await reqPut(
+			`${urls.updateApplicationStatus}${account._id}/${internship._id}/${applicationId}`,
+			{ status }
+		);
+		if (data.success) {
+			dispatch({
+				type: "UPDATE_INTERNSHIPS",
+				payload: { internship: data.body.internship },
+			});
+			dispatch({type: 'SET_INTERNSHIP', payload: {internship: data.body.internship}});
+		}
+	};
+
+	const startChat = (applicationId, studentAccount) => {
+		updateApplicationStatus(applicationId, "In Touch");
 		dispatch({
 			type: "START_NEW_CHAT",
 			payload: { account: studentAccount },
 		});
 		router.push("/social/chats");
-	};
-
-	const rejectApplication = async (applicationId) => {
-		const data = await reqDelete(
-			`${urls.rejectApplication}${account._id}/${internship._id}/${applicationId}`
-		);
-		if (data.success)
-			dispatch({ type: "UPDATE_INTERNSHIPS", payload: { internship: data.body.internship } });
 	};
 
 	useEffect(() => {
@@ -93,14 +100,20 @@ const ReviewApplications = () => {
 						<h3>
 							Applications (
 							{internship.applications
-								? internship.applications.length
+								? internship.applications.filter(application => application.status !== 'Rejected').length
 								: 0}
 							)
 						</h3>
 						{internship.applications &&
-						internship.applications.length > 0 ? (
+						internship.applications.filter(application => application.status !== 'Rejected').length > 0 ? (
 							<ul>
 								{internship.applications.map((application) => {
+									if (application.status === "Rejected")
+										return (
+											<Fragment
+												key={application._id}
+											></Fragment>
+										);
 									return (
 										<li key={application._id}>
 											<div className={_.studentInfo}>
@@ -129,8 +142,9 @@ const ReviewApplications = () => {
 											>
 												<button
 													onClick={() =>
-														rejectApplication(
-															application._id
+														updateApplicationStatus(
+															application._id,
+															"Rejected"
 														)
 													}
 												>
@@ -139,6 +153,7 @@ const ReviewApplications = () => {
 												<button
 													onClick={() =>
 														startChat(
+															application._id,
 															application.studentId
 														)
 													}

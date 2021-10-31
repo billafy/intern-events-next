@@ -1,0 +1,40 @@
+@import '../templates/_colors.scss';
+@import '../templates/_variables.scss';
+
+.myInternships {
+	h1 {
+		color: $text;
+		text-align: center;
+	}
+	ul {
+		@include flexV(column);
+		flex-direction: column-reverse;
+		color: $text;
+		row-gap: 1rem;
+		li {
+			background: $primary;
+			border: 1px solid $border;
+			box-shadow: $shadow-s;
+			width: 600px;
+			max-width: 95%;
+			padding: 1rem;
+			a {
+				@include link1;
+				font-size: 1.3rem;
+			}
+			&:hover {
+				box-shadow: $shadow-l;
+			}
+		}
+	}
+	.noInternships {
+		text-align: center;
+		p {
+			color: $text;
+		}
+		a {
+			@include button;
+			width: auto;	
+		}
+	}
+}

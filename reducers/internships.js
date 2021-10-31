@@ -32,11 +32,16 @@ const internshipsReducer = (state = initialState, action) => {
 			return { ...state, inputError: action.payload.error };
 		case "SET_INTERNSHIPS":
 			newInternships = action.payload.internships;
-			let minStipend = 1000000,
+			return {
+				...state,
+				internships: newInternships,
+			};
+		case "SET_FILTERS":
+			let minStipend = 10000000000000,
 				maxStipend = -1,
-				minDuration = 100000000,
+				minDuration = 1000000000000,
 				maxDuration = -1;
-			newInternships.forEach((internship) => {
+			state.internships.forEach((internship) => {
 				minStipend = Math.min(minStipend, internship.stipend);
 				maxStipend = Math.max(maxStipend, internship.stipend);
 				minDuration = Math.min(minDuration, internship.duration);
@@ -44,7 +49,6 @@ const internshipsReducer = (state = initialState, action) => {
 			});
 			return {
 				...state,
-				internships: newInternships,
 				stipendFilter: { max: maxStipend, min: minStipend },
 				durationFilter: { max: maxDuration, min: minDuration },
 				filters: {
@@ -71,7 +75,6 @@ const internshipsReducer = (state = initialState, action) => {
 		case "UPDATE_FILTERS":
 			let newFilters = state.filters;
 			newFilters[action.payload.name] = action.payload.value;
-			console.log(newFilters);
 			return { ...state, filters: { ...newFilters } };
 		case "RESET_FILTERS":
 			return {

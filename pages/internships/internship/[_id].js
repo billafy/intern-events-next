@@ -32,7 +32,6 @@ const Internship = () => {
 		if(internship._id) {
 			const data = await reqPut(`${urls.applyInternship}${internship._id}/${account._id}/`, {message});
 			setShowApply(false);
-			console.log(data.body.internship)
 			if(data.success) 
 				dispatch({type: 'SET_INTERNSHIP', payload: {internship: data.body.internship}});
 		}

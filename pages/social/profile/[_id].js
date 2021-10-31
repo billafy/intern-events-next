@@ -1,16 +1,17 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import urls from "../../../utils/urls";
 import { getResume, getImage } from "../../../utils/utils";
 import _ from "../../../styles/social/Profile.module.scss";
 import { GiMale, GiFemale } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
-import {reqPut} from '../../../utils/customRequests'
+import {reqGet, reqPut} from '../../../utils/customRequests'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
+import Loading from '../../../components/Loading';
 
-const Profile = ({ propProfile }) => {
+const Profile = () => {
 	const router = useRouter()
-	const [profile, setProfile] = useState(propProfile)
+	const [profile, setProfile] = useState({details: {projects: [], skills: []}, followers: [], following: []})
 	const {
 		auth: { isLoggedIn, account },
 	} = useSelector((state) => state);
@@ -25,10 +26,22 @@ const Profile = ({ propProfile }) => {
 	}
 
 	const startChat = () => {
-		dispatch({type: 'START_NEW_CHAT', payload: {account: profile}})
+		dispatch({type: 'NEW_CHAT', payload: {account: profile}})
 		router.push('/social/chats');
 	}
 
+	const getProfile = async () => {
+		const data = await reqGet(urls.getAccount + router.query._id);
+		if(data.success) 
+			setProfile(data.body.account);
+	}
+
+	useEffect(() => {
+		getProfile();
+	}, [])
+
+	if(!profile) 
+		return <Loading/>
 	return (
 		<div className={`${_.profile} ${profile.accountType === 'student' ? '' : _.collegeCompanyProfile}`}>
 			<h1>Profile</h1>
@@ -138,29 +151,3 @@ const Profile = ({ propProfile }) => {
 };
 
 export default Profile;
-
-export async function getStaticPaths() {
-	const response = await fetch(urls.getAccountIds);
-	const data = await response.json();
-	const _ids = data.body._ids.map((_id) => {
-		return {
-			params: {
-				_id: _id._id,
-			},
-		};
-	});
-	return {
-		paths: _ids,
-		fallback: false,
-	};
-}
-
-export const getStaticProps = async ({ params }) => {
-	const response = await fetch(urls.getAccount + params._id);
-	const data = await response.json();
-	return {
-		props: {
-			propProfile: data.body.account,
-		},
-	};
-};

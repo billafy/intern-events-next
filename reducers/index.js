@@ -13,8 +13,7 @@ const appReducer = combineReducers({
 
 const rootReducer = (state, action) => {
 	if (action.type === "LOGOUT") {
-		if(state.socket) 
-			state.socket.disconnect()
+		if (state.socket) state.socket.disconnect();
 		state = {
 			auth: {
 				...state.auth,
@@ -36,6 +35,14 @@ const rootReducer = (state, action) => {
 				internshipInput: internshipInputs,
 				internship: {},
 				inputError: "",
+				stipendFilter: { max: 0, min: 0 },
+				durationFilter: { max: 0, min: 0 },
+				filters: {
+					category: "All",
+					stipend: 0,
+					duration: 0,
+					keyword: "",
+				},
 			},
 		};
 	}
