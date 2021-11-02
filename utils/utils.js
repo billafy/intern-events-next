@@ -9,6 +9,8 @@ export const getImage = (imageName) => {
 }
 
 export const getResume = (resumeName) => {
+	if(!resumeName) 
+		return '#';
 	return imageKitUrl + resumeName;
 }
 
