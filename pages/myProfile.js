@@ -29,6 +29,7 @@ const MyProfile = () => {
 			body: formData,
 			credentials: "include",
 		});
+		console.log(response);
 		const data = await response.json();
 		if (data.success)
 			dispatch({
