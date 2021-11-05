@@ -7,7 +7,11 @@ export const reqGet = async (url) => {
 	return data;
 };
 
-export const reqPost = async (url, body = {}, contentType = 'application/json') => {
+export const reqPost = async (
+	url,
+	body = {},
+	contentType = "application/json"
+) => {
 	const response = await fetch(url, {
 		method: "POST",
 		headers: {

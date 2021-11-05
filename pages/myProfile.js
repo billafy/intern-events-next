@@ -11,7 +11,7 @@ import Projects from "../components/Profile/Projects";
 import Skills from "../components/Profile/Skills";
 import { MdEdit } from "react-icons/md";
 import Popup from "../components/Popup";
-import Link from 'next/link'
+import Link from "next/link";
 
 const MyProfile = () => {
 	const router = useRouter();
@@ -58,13 +58,15 @@ const MyProfile = () => {
 
 	const updateDescription = async () => {
 		const data = await reqPut(urls.updateAccount + account._id, {
-			account: {...account, description: description}
-		})
-		if(data.success) 
-			dispatch({type: 'UPDATE_ACCOUNT', payload: {account: data.body.account}})
-		setShowDescription(false)
-
-	}
+			account: { ...account, description: description },
+		});
+		if (data.success)
+			dispatch({
+				type: "UPDATE_ACCOUNT",
+				payload: { account: data.body.account },
+			});
+		setShowDescription(false);
+	};
 
 	useEffect(() => {
 		if (!isLoggedIn) router.replace("/");
@@ -72,7 +74,13 @@ const MyProfile = () => {
 
 	return (
 		isLoggedIn && (
-			<div className={`${_.myProfile} ${account.accountType === 'student' ? '' : _.collegeCompanyProfile}`}>
+			<div
+				className={`${_.myProfile} ${
+					account.accountType === "student"
+						? ""
+						: _.collegeCompanyProfile
+				}`}
+			>
 				<h1>My Profile</h1>
 				<section className={_.profileDetails}>
 					<div className={_.profilePicture}>
@@ -139,8 +147,18 @@ const MyProfile = () => {
 							>
 								<form>
 									<h3>Update Description</h3>
-									<textarea placeholder="Enter about yourself" value={description} onChange={({target: {value}}) => setDescription(value)}/>
-									<input type="button" value="Save" onClick={updateDescription}/>
+									<textarea
+										placeholder="Enter about yourself"
+										value={description}
+										onChange={({ target: { value } }) =>
+											setDescription(value)
+										}
+									/>
+									<input
+										type="button"
+										value="Save"
+										onClick={updateDescription}
+									/>
 								</form>
 							</Popup>
 						</span>

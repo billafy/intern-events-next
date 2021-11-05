@@ -1,8 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-
 import Form from "../../components/Form";
-
 import { signupFields } from "../../utils/inputFields";
 import { reqPost } from "../../utils/customRequests";
 

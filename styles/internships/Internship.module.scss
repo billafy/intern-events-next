@@ -30,6 +30,9 @@
         }
         .description {
             color: $text;
+            > * {
+                line-height: 1.5;
+            }
         }
         .applicationForm {
             @include flexB(column);

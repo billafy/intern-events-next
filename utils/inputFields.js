@@ -162,28 +162,28 @@ export const defaultInputs = {
 };
 
 export const internshipInputs = {
-	title: '',
-	description: '',
+	title: "",
+	description: "",
 	stipend: 0,
 	duration: 1,
-	category: 'Architecture',
-	applicationEnd: '',
+	category: "Architecture",
+	applicationEnd: "",
 	numberOfPositions: 1,
-}
+};
 
-export const internshipCategories = ([
-	'Computer Science',
-	'Finance',
-	'Marketing',
-	'Graphic Design',
-	'Architecture',
-	'Mechanical',
-	'Human Resources',
-	'Digital Marketing',
-	'Law',
-	'Electronics',
-	'Content Writing',
-	'Civil',
-	'Campus Ambassador',
-	'Teaching'
-]).sort()
+export const internshipCategories = [
+	"Computer Science",
+	"Finance",
+	"Marketing",
+	"Graphic Design",
+	"Architecture",
+	"Mechanical",
+	"Human Resources",
+	"Digital Marketing",
+	"Law",
+	"Electronics",
+	"Content Writing",
+	"Civil",
+	"Campus Ambassador",
+	"Teaching",
+].sort();

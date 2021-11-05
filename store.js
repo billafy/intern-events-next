@@ -34,7 +34,7 @@ export const initialState = {
             category: "All",
             stipend: 0,
             duration: 0,
-            keyword: '',
+            keyword: "",
         },
     },
 };

@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-
 import Form from "../../components/Form";
-
 import {
     studentFields,
     collegeFields,

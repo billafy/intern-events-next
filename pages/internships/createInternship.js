@@ -14,12 +14,6 @@ const CreateInternship = () => {
         internships: { internshipInput, inputError },
     } = useSelector((state) => state);
 
-    useEffect(() => {
-        dispatch({type: 'FLUSH_INPUT'})
-        if (!isLoggedIn || account.accountType !== "company")
-            router.replace("/");
-    }, []);
-
     const createInternship = async (event) => {
         event.preventDefault();
         if (
@@ -30,17 +24,27 @@ const CreateInternship = () => {
             !internshipInput.numberOfPositions ||
             !internshipInput.duration ||
             !internshipInput.stipend
-        ) 
-            return dispatch({type: 'INPUT_ERROR', payload: {error: 'Fill all the fields'}})
-        const data = await reqPost(urls.createInternship + account._id, { internshipInput });
-        if(data.success) 
-            return router.replace('/')
-        dispatch({type: 'INPUT_ERROR', payload: {error: data.body.error}})
+        )
+            return dispatch({
+                type: "INPUT_ERROR",
+                payload: { error: "Fill all the fields" },
+            });
+        const data = await reqPost(urls.createInternship + account._id, {
+            internshipInput,
+        });
+        if (data.success) return router.replace("/");
+        dispatch({ type: "INPUT_ERROR", payload: { error: data.body.error } });
     };
 
     const updateInput = ({ target: { name, value } }) => {
         dispatch({ type: "UPDATE_INPUT", payload: { name, value } });
     };
+
+    useEffect(() => {
+        dispatch({ type: "FLUSH_INPUT" });
+        if (!isLoggedIn || account.accountType !== "company")
+            router.replace("/");
+    }, []);
 
     return (
         <div className={_.createInternship}>
